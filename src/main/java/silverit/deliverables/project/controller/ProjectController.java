@@ -18,7 +18,8 @@ public class ProjectController {
     public String hello(){
 
         Project project = new Project();
-        project.setName("a");
+        project.setPrjNm("aaa");
+
         projectRepository.save(project);
 
         List<Project> projectList = projectRepository.findAll();

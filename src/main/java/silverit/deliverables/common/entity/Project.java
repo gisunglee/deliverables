@@ -37,20 +37,20 @@ public class Project {
     private List<RequirementSpec> requirementSpecs = new ArrayList<>(); //요구사항 = T_REQUIREMENT_SPECS
 
 
-    // 단계 연관관계 편의 메서드
-    public void relationSteps(Step step){
+    // 단계 연관관계 편의 메서드 (프로젝트 <-> 단계)
+    public void changeSteps(Step step){
         this.getSteps().add(step);
         step.setProject(this);
     }
 
-    // 제안 요청 연관관계 편의 메서드
-    public void relationPropslRequests(PropslRequest propslRequest){
+    // 연관관계 편의 메서드 (프로젝트 <-> 제안 요청)
+    public void changePropslRequests(PropslRequest propslRequest){
         this.getPropslRequests().add(propslRequest);
         propslRequest.setProject(this);
     }
 
-    // 요구사항 명세 편의 메서드
-    public void relationRequirementSpecs(RequirementSpec requirementSpec){
+    // 연관관계 편의 메서드 (프로젝트 <-> 요구사항 명세)
+    public void changeRequirementSpecs(RequirementSpec requirementSpec){
         this.getRequirementSpecs().add(requirementSpec);
         requirementSpec.setProject(this);
     }

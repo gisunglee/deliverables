@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -41,8 +43,11 @@ public class RequirementSpec {
     @Setter
     private Project project; // 프로젝트
 
-    //연관관계 편의 메서드
-    public void relationProject(Project project) {
+    @OneToMany(mappedBy = "requirementSpec")
+    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑핑
+
+    //연관관계 편의 메서드 (요구사항명세 <-> 프로젝트)
+    public void changeProject(Project project) {
 
         if(this.project != null) {
             this.project.getRequirementSpecs().remove(this);
@@ -52,5 +57,10 @@ public class RequirementSpec {
         project.getRequirementSpecs().add(this);
     }
 
+    //연관 관계 편의 메서드 (요구사항명세 <-> 제안요청요구사항매핑)
+    public void changePropslRequirementMppg(PropslRequirementMppg propslRequirementMppg){
+        this.propslRequirementMppgs.add(propslRequirementMppg);
+        propslRequirementMppg.setRequirementSpec(this);
+    }
 
 }

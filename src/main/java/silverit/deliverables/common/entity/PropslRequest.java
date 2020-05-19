@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,13 +31,24 @@ public class PropslRequest {
     @Setter
     private Project project;
 
-    //연관관계 편의 메서드
-    public void relationProject(Project project) {
+    @OneToMany(mappedBy = "propslRequest")
+    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑핑
+
+
+   //연관관계 편의 메서드 (제안 요청 <-> 프로젝트)
+    public void changeProject(Project project) {
         if(this.project != null) {
             this.project.getPropslRequests().remove(this);
         }
         this.project = project;
         project.getPropslRequests().add(this);
     }
+
+    //연관 관계 편의 메서드 (제안요청 <-> 제안요청요구사항매핑)
+    public void changePropslRequirementMppg(PropslRequirementMppg propslRequirementMppg){
+        this.propslRequirementMppgs.add(propslRequirementMppg);
+        propslRequirementMppg.setPropslRequest(this);
+    }
+
 
 }

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,8 +30,13 @@ public class Step {
     @Setter
     private Project project; // 프로젝트
 
-    //연관관계 편의 메서드
-    public void relationProject(Project project) {
+    //활동
+    @OneToMany(mappedBy = "step")
+    private List<Activity> activitys = new ArrayList<>(); //활동 = T_ACTIVITY
+
+
+    //연관관계 편의 메서드 (단계 <-> 프로젝트)
+    public void changeProject(Project project) {
 
         if(this.project != null) {
             this.project.getSteps().remove(this);
@@ -39,7 +46,11 @@ public class Step {
         project.getSteps().add(this);
     }
 
-
+    //연관관계 편의 메서드 (단계 <-> 활동)
+    public void changeActivity(Activity activity) {
+        this.getActivitys().add(activity);
+        activity.setStep(this);
+    }
 
 
 }

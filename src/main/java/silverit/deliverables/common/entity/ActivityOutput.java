@@ -28,7 +28,6 @@ public class ActivityOutput {
 
     //연관관계 편의 메서드 (활동산출물 <-> 활동)
     public void changeActivity (Activity activity){
-
         if(this.activity != null){
             this.activity.getActivityOutputs().remove(this);
         }
@@ -38,7 +37,6 @@ public class ActivityOutput {
 
     //연관관계 편의 메서드 (활동산출물 <-> 산출물)
     public void changeOutput (Output output){
-
         if(this.output != null){
             this.output.getActivityOutputs().remove(this);
         }

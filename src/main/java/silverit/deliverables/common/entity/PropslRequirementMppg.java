@@ -28,7 +28,6 @@ public class PropslRequirementMppg {
         if(this.propslRequest != null){
             this.propslRequest.getPropslRequirementMppgs().remove(this);
         }
-
         this.propslRequest = propslRequest;
         propslRequest.getPropslRequirementMppgs().add(this);
     }
@@ -38,7 +37,6 @@ public class PropslRequirementMppg {
         if(this.requirementSpec != null){
             this.requirementSpec.getPropslRequirementMppgs().remove(this);
         }
-
         this.requirementSpec = requirementSpec;
        requirementSpec.getPropslRequirementMppgs().add(this);
     }

@@ -44,7 +44,10 @@ public class RequirementSpec {
     private Project project; // 프로젝트
 
     @OneToMany(mappedBy = "requirementSpec")
-    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑핑
+    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑
+
+    @OneToMany(mappedBy = "requirementSpec")
+    private List<Menu> menus = new ArrayList<>(); //메뉴
 
     //연관관계 편의 메서드 (요구사항명세 <-> 프로젝트)
     public void changeProject(Project project) {
@@ -61,6 +64,12 @@ public class RequirementSpec {
     public void changePropslRequirementMppg(PropslRequirementMppg propslRequirementMppg){
         this.propslRequirementMppgs.add(propslRequirementMppg);
         propslRequirementMppg.setRequirementSpec(this);
+    }
+
+    //연관 관계 편의 메서드 (요구사항명세 <-> 메뉴)
+    public void changeMenu(Menu menu){
+        this.getMenus().add(menu);
+        menu.setRequirementSpec(this);
     }
 
 }

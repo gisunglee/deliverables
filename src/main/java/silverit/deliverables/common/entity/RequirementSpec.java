@@ -49,6 +49,13 @@ public class RequirementSpec {
     @OneToMany(mappedBy = "requirementSpec")
     private List<Menu> menus = new ArrayList<>(); //메뉴
 
+    @OneToMany(mappedBy = "requirementSpec")
+    private List<Module> modules = new ArrayList<>(); //모듈
+
+    @OneToMany(mappedBy = "requirementSpec")
+    private List<Program> programs = new ArrayList<>(); //프로그램
+
+
     //연관관계 편의 메서드 (요구사항명세 <-> 프로젝트)
     public void changeProject(Project project) {
 

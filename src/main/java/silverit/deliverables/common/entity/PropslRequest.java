@@ -32,7 +32,7 @@ public class PropslRequest {
     private Project project;
 
     @OneToMany(mappedBy = "propslRequest")
-    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑핑
+    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑
 
 
    //연관관계 편의 메서드 (제안 요청 <-> 프로젝트)

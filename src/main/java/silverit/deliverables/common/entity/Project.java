@@ -36,6 +36,9 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<RequirementSpec> requirementSpecs = new ArrayList<>(); //요구사항 = T_REQUIREMENT_SPECS
 
+    //프로젝트 팀원
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<ProjectMemberMppg> projectMemberMppg = new ArrayList<>(); //프로젝트 팀원 = T_PROJECT_MEMBER_MAPPG
 
     // 단계 연관관계 편의 메서드 (프로젝트 <-> 단계)
     public void changeSteps(Step step){
@@ -54,4 +57,12 @@ public class Project {
         this.getRequirementSpecs().add(requirementSpec);
         requirementSpec.setProject(this);
     }
+
+    // 연관관계 편의 메서드 (프로젝트 <-> 프로젝트 팀원)
+    public void changePojectMemberMppg(ProjectMemberMppg pojectMemberMppg){
+        this.getProjectMemberMppg().add(pojectMemberMppg);
+        pojectMemberMppg.setProject(this);
+    }
+
+
 }

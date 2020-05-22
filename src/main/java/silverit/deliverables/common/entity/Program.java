@@ -3,6 +3,8 @@ package silverit.deliverables.common.entity;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +27,12 @@ public class Program {
     @JoinColumn(name = "REQUIREMENT_NO")
     private RequirementSpec requirementSpec; //요구사항명세
 
+    @OneToMany(mappedBy = "program")
+    private List<Function> functions = new ArrayList<>(); //기능
+
+    @OneToMany(mappedBy = "program")
+    private List<Source> sources = new ArrayList<>(); //소스
+
     //연관 관계 편의 메서드 (프로그램 <-> 모듈)
     public void changeModule(Module module){
         if (this.module != null) {
@@ -42,6 +50,20 @@ public class Program {
         this.requirementSpec = requirementSpec;
         requirementSpec.getPrograms().add(this);
     }
+
+    //연관 관계 편이 메서드 (프로그램 <-> 기능)
+    public void changeFunction(Function function){
+        this.functions.add(function);
+        function.setProgram(this);
+    }
+
+    //연관 관계 편이 메서드 (프로그램 <-> 소스)
+    public void changeSource(Source source){
+        this.sources.add(source);
+        source.setProgram(this);
+    }
+
+
 
 
 }

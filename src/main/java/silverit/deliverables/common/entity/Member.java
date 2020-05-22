@@ -36,10 +36,19 @@ public class Member {
     @OneToMany(fetch = FetchType.LAZY)
     private List<HolidaysHist> holidaysHists = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<ProjectMemberMppg> projectMemberMppg = new ArrayList<>();
+
     //연관 관계 편의 메서드 (직원 <-> 연차이력)
     public void changeHolidaysHists(HolidaysHist holidaysHist){
         this.holidaysHists.add(holidaysHist);
         holidaysHist.setMember(this);
+    }
+
+    //연관 관계 편의 메서드 (직원 <-> 프로젝트팀원)
+    public void changeProjectMemberMppg(ProjectMemberMppg projectMemberMppg){
+        this.projectMemberMppg.add(projectMemberMppg);
+        projectMemberMppg.setMember(this);
     }
 
 }

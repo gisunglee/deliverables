@@ -55,14 +55,17 @@ public class RequirementSpec {
     @OneToMany(mappedBy = "requirementSpec")
     private List<Program> programs = new ArrayList<>(); //프로그램
 
+    @OneToMany(mappedBy = "requirementSpec")
+    private List<Function> functions = new ArrayList<>(); //기능
+
+    @OneToMany(mappedBy = "requirementSpec")
+    private List<RequirementOrgn> requirementOrgns = new ArrayList<>(); //요구사항출처
 
     //연관관계 편의 메서드 (요구사항명세 <-> 프로젝트)
     public void changeProject(Project project) {
-
         if(this.project != null) {
             this.project.getRequirementSpecs().remove(this);
         }
-
         this.project = project;
         project.getRequirementSpecs().add(this);
     }
@@ -78,5 +81,19 @@ public class RequirementSpec {
         this.getMenus().add(menu);
         menu.setRequirementSpec(this);
     }
+
+    //연관 관계 편이 메서드 (요구사항명세 <-> 기능)
+    public void changeFunction(Function function){
+        this.functions.add(function);
+        function.setRequirementSpec(this);
+    }
+
+    //연관 관계 편이 메서드 (요구사항명세 <-> 요구사항출처)
+    public void changeRequirementOrgns(RequirementOrgn requirementOrgn){
+        this.requirementOrgns.add(requirementOrgn);
+        requirementOrgn.setRequirementSpec(this);
+    }
+
+
 
 }

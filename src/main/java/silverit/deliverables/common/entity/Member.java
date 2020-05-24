@@ -1,6 +1,7 @@
 package silverit.deliverables.common.entity;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 
 import javax.persistence.*;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
+@Getter @Setter
 @Table(name = "T_MEMBER")
 public class Member {
 
@@ -33,10 +34,10 @@ public class Member {
     private String iconCd; //아이콘 코드
     private String iconPullFilePath; //아이콘 전체 파일 경로
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member")
     private List<HolidaysHist> holidaysHists = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "member")
     private List<ProjectMemberMppg> projectMemberMppg = new ArrayList<>();
 
     //연관 관계 편의 메서드 (직원 <-> 연차이력)

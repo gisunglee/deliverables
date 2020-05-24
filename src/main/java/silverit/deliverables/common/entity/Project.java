@@ -37,7 +37,7 @@ public class Project {
     private List<RequirementSpec> requirementSpecs = new ArrayList<>(); //요구사항 = T_REQUIREMENT_SPECS
 
     //프로젝트 팀원
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project")
     private List<ProjectMemberMppg> projectMemberMppg = new ArrayList<>(); //프로젝트 팀원 = T_PROJECT_MEMBER_MAPPG
 
     // 단계 연관관계 편의 메서드 (프로젝트 <-> 단계)

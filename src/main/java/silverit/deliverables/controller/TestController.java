@@ -6,6 +6,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class TestController {
 
+    @GetMapping("/s/boooda/index")
+    public String goSBooodaIndex(){
+        return "boooda/index";
+    }
+
+
+    @GetMapping("/boooda/index")
+    public String goBooodaIndex(){
+        return "index";
+    }
+
+    @GetMapping("/boooda/forms-wysiwyg-editors")
+    public String formsWysiwygEditors(){
+        return "/test/forms-wysiwyg-editors";
+    }
+
+
     @GetMapping("/test")
     public String goTest(){
 
@@ -22,5 +39,11 @@ public class TestController {
     public String goHello2(){
 
         return "fragments/layout/hello";
+    }
+
+    @GetMapping("/hello3")
+    public String goHello3(){
+
+        return "fragments/main/content";
     }
 }

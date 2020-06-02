@@ -1,19 +1,29 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">Eblo</title>
-    <!-- 공통 css, js, meta tag -->
-    <th:block th:replace="fragments/commonHead"></th:block>
-</head>
-<body>
-<h1>기본 레이아웃</h1>
-<!-- page content body 구성 -->
-<th:block layout:fragment="content"></th:block>
-<!-- 공통 footer -->
-<footer th:replace="fragments/commonFooter :: commonFooter"></footer>
-<!-- 공통 javascript -->
-<th:block th:replace="fragments/commonScript"></th:block>
-<!-- page content javascript -->
-<th:block layout:fragment="pageCustomScript"></th:block>
-</body>
+
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>Bamdule</title>
+
+        <!-- config fragment 사용 -->
+        <th:block th:replace="fragment/config :: configFragment" ></th:block>
+    </head>
+
+    <body>
+        <!-- header fragment 사용 -->
+        <th:block th:replace="fragment/header :: headerFragment"></th:block>
+
+        <!--
+            content fragment 사용
+            현재 layout을 사용하는 content fragment의 내용을 삽입한다.
+        -->
+        <th:block layout:fragment="content"></th:block>
+
+        <!-- footer fragment 사용 -->
+        <th:block th:replace="fragment/footer :: footerFragment"> </th:block>
+    </body>
+
 </html>

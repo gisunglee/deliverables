@@ -29,21 +29,43 @@ public class TestController {
         return "fragments/layout/defaultLayout";
     }
 
+    //---------------------------------------------------------------------------------
 
-    @GetMapping("/hello1")
-    public String goHello1(){
+    @GetMapping("/hello")
+    public String goHello(){
 
         return "hello";
     }
     @GetMapping("/hello2")
     public String goHello2(){
 
-        return "fragments/layout/hello";
+        return "hello2";
     }
 
-    @GetMapping("/hello3")
-    public String goHello3(){
 
-        return "fragments/main/content";
+    @GetMapping("/biz/hello")
+    public String goBizHello(){
+
+        return "biz/hello";
     }
+
+    @GetMapping("/biz/hello1")
+    public String goBizHello1(){
+
+        return "biz/hello2";
+    }
+
+    @GetMapping("/biz/hello2")
+    public String goBizHello2(){
+
+        return "biz/hello2";
+    }
+
+    @GetMapping("/biz/test")
+    public String goBizTest(){
+
+        return "biz/test";
+    }
+
+
 }

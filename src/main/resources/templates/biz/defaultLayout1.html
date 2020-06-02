@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<!--/* Standard layout can be mixed with Layout Dialect */-->
+
+<div layout:fragment="content"></div>
+<div th:replace="~{biz/footer :: footer}"></div>
+
+
+</body>
+</html>

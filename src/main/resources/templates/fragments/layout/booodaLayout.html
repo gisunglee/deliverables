@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div th:replace="~{fragments/common/headerResources :: headerResourcesFragment}"></div>
+    </head>
+    <body>
+        <!-- APP WRAPPER -->
+        <div class="app">
+
+            <!-- START APP CONTAINER -->
+            <div class="app-container">
+                <!-- START SIDEBAR -->
+                <div th:replace="~{fragments/common/leftMenu :: leftMenuFragment}"></div>
+                <!-- END SIDEBAR -->
+
+                <!-- START APP CONTENT -->
+                <div class="app-content app-sidebar-left">
+                    <!-- START APP HEADER -->
+                    <div th:replace="~{fragments/common/header :: headerFragment}"></div>
+
+
+                    <div layout:fragment="content"></div>
+
+                </div>
+                <!-- END APP CONTENT -->
+            </div>
+            <!-- END APP CONTAINER -->
+
+            <!-- START APP SIDEPANEL -->
+            <div th:replace="~{fragments/common/notifications :: notificationsFragment}"></div>
+            <!-- END APP SIDEPANEL -->
+
+            <!-- APP OVERLAY -->
+            <div class="app-overlay"></div>
+            <!-- END APP OVERLAY -->
+
+        </div>
+        <!-- END APP WRAPPER -->
+
+        <div th:replace="~{fragments/common/footerResources :: footerResourcesFragment}"></div>
+
+    </body>
+</html>

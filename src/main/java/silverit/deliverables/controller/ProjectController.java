@@ -5,6 +5,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import silverit.deliverables.common.entity.Project;
@@ -24,7 +25,7 @@ public class ProjectController {
     final ProjectService projectService;
     
     
-    @RequestMapping("project/list")
+    @RequestMapping("/project/list")
     public String list(Model model){
         //프로젝트 목록 조회
         List<Project> projectList = projectRepository.findAll();
@@ -34,15 +35,15 @@ public class ProjectController {
         return "biz/project/list";
     }
 
-    @RequestMapping("project/goAdd")
+    @RequestMapping("/project/goAdd")
     public String add(ProjectForm projectForm, Model model){
 
         return "biz/project/add";
     }
 
 
-    @RequestMapping("project/add")
-    public @ResponseBody ProjectForm save(@ModelAttribute("projectForm") ProjectForm projectForm, Model model){
+    @PostMapping("/project/add")
+    public @ResponseBody ProjectForm save(@ModelAttribute("projectForm") ProjectForm projectForm, Project p, Model model, String prjNm){
 
         Project project = projectService.save(projectForm);
 

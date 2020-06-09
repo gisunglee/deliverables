@@ -16,21 +16,15 @@
 
             $("#btnSave").on("click", function(){
 
-                alert(JSON.stringify($("#form1")));
-                alert($('input[name=prjNm]').val());
-
                 var sendData = $('#form1').serialize();
 
                 alert(sendData);
 
-
-                $.ajax({
-                    cache : false,
+                $.post({
                     url : "/project/add", // 요기에
-                    processData: false,
-                    contentType: false,
                     type : 'POST',
                     data : sendData,
+                    dataType: "json",
                     success : function(data) {
                         var jsonObj = JSON.parse(data);
 

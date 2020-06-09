@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <div th:replace="~{fragments/common/headerResources :: headerResourcesFragment}"></div>
+
+
     </head>
     <body>
         <!-- APP WRAPPER -->
@@ -36,7 +38,8 @@
         </div>
         <!-- END APP WRAPPER -->
 
+        <div th:replace="~{fragments/common/footer :: footerFragment}"></div>
         <div th:replace="~{fragments/common/footerResources :: footerResourcesFragment}"></div>
-
+        <div layout:fragment="beyondPageScript"></div>
     </body>
 </html>

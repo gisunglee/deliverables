@@ -2,7 +2,6 @@
 <html lang="en">
     <div th:replace="~{fragments/common/headerResources :: headerResourcesFragment}"></div>
 
-
     </head>
     <body>
         <!-- APP WRAPPER -->
@@ -10,6 +9,7 @@
 
             <!-- START APP CONTAINER -->
             <div class="app-container">
+
                 <!-- START SIDEBAR -->
                 <div th:replace="~{fragments/common/leftMenu :: leftMenuFragment}"></div>
                 <!-- END SIDEBAR -->
@@ -18,7 +18,6 @@
                 <div class="app-content app-sidebar-left">
                     <!-- START APP HEADER -->
                     <div th:replace="~{fragments/common/header :: headerFragment}"></div>
-
 
                     <div layout:fragment="content"></div>
 
@@ -34,6 +33,10 @@
             <!-- APP OVERLAY -->
             <div class="app-overlay"></div>
             <!-- END APP OVERLAY -->
+
+            <!-- LIST OF STATUSBARS -->
+            <div th:replace="~{fragments/common/statusbars :: statusbarsFragment}"></div>
+            <!-- END OF STATUSBARS -->
 
         </div>
         <!-- END APP WRAPPER -->

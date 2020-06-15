@@ -8,38 +8,26 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
-        alert("a");
-
-        $(document).ready(function(){
 
 
+$(document).ready(function(){
 
-            $("#btnSave").on("click", function(){
+        // 저장
+        $("#btnSave").on("click", function(){
 
-                var sendData = $('#form1').serialize();
+            var sCallbackFn = function (data) {
+            };
 
-                alert(sendData);
+            var fCallbackFn = function (xhr, status) {
+            };
 
-                $.post({
-                    url : "/project/add", // 요기에
-                    type : 'POST',
-                    data : sendData,
-                    dataType: "json",
-                    success : function(data) {
-                        var jsonObj = JSON.parse(data);
-
-                        console.log("success : " + jsonObj);
-
-                    }, // success
-                    error : function(xhr, status) {
-                        alert(xhr + " : " + status);
-
-                        console.log("error : " + status);
-                    }
-                }); // $.ajax */
-            });
+            var ajax_post = new POST("/project/add"
+                                    , "form1"
+                                    , sCallbackFn
+                                    , fCallbackFn);
 
         });
+});
 
     </script>
 

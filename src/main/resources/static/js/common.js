@@ -89,9 +89,6 @@ var _STATUSBAR = function(){
 
 var SBAR = new _STATUSBAR();
 
-alert(SBAR);
-console.log(SBAR);
-
 /*********************************************************************************
 
 *********************************************************************************/
@@ -133,14 +130,14 @@ function POST (path, fName, sFn, fFn, qString) {
 
             console.log(data);
             // var jsonObj = JSON.parse(data);
-            if (typeof sFn !== 'undefined'){
+            if (typeof sFn !== 'undefined' || typeof sFn != null){
                 sFn(data);
             }
         }, // success
         error : function(xhr, status) {
             SBAR.fail();
 
-            if (typeof fFn !== 'undefined'){
+            if (typeof fFn !== 'undefined' || typeof sFn != null){
                 fFn(xhr, status);
             }
         }

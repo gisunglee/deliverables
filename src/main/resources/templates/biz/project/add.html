@@ -16,6 +16,9 @@ $(document).ready(function(){
         $("#btnSave").on("click", function(){
 
             var sCallbackFn = function (data) {
+                setTimeout(function(){
+                    location.href = "/project/list";
+                },1000);
             };
 
             var fCallbackFn = function (xhr, status) {
@@ -49,8 +52,8 @@ $(document).ready(function(){
 
                 <div class="app-heading app-heading-bordered app-heading-page">
                     <div class="title">
-                        <h2>Default Elements</h2>
-                        <p>Easiest way to make your heading beautiful</p>
+                        <h2>프로젝트 등록</h2>
+                        <p>프로젝트를 등록해주세요.</p>
                     </div>
                 </div>
                 <div class="app-heading-container app-heading-bordered bottom">
@@ -70,8 +73,8 @@ $(document).ready(function(){
 
                         <div class="app-heading app-heading-small">
                             <div class="title">
-                                <h2>Basic Inputs</h2>
-                                <p>Ultra Crisp Line Icons with Integrity</p>
+<!--                                <h2>프로젝트 등록</h2>-->
+                                <p>프로젝트 정보를 입력해 주세요!</p>
                             </div>
                         </div>
 

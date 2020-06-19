@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/booodaLayout}">
+
+<div layout:fragment="content">
+
+                <!-- START PAGE HEADING -->
+                <div class="app-heading app-heading-bordered app-heading-page">
+                    <div class="title">
+                        <h1>Default Tables</h1>
+                        <p>Examples of default tables.</p>
+                    </div>
+
+                </div>
+                <div class="app-heading-container app-heading-bordered bottom">
+                    <ul class="breadcrumb">
+                        <li><a href="/boooda/#">Dashboard</a></li>
+                        <li><a href="/boooda/#">Components</a></li>
+                        <li class="active">Tables</li>
+                    </ul>
+                </div>
+                <!-- END PAGE HEADING -->
+
+                <!-- START PAGE CONTAINER -->
+                <div class="container">
+
+                    <div class="block block-condensed">
+                        <!-- START HEADING -->
+                        <div class="app-heading app-heading-small">
+                            <div class="title">
+                                <h5>Using Template Features</h5>
+                                <p>Its possible to use all features inside table</p>
+                            </div>
+                        </div>
+                        <!-- END HEADING -->
+
+                        <div class="table-responsive">
+                            <table class="table table-head-light table-striped">
+                                <thead>
+                                <tr>
+                                    <th:block th:each="num: ${#numbers.sequence(1,5)}">
+                                        <th>user</th>
+                                    </th:block>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <tr th:each="item : ${projectList}">
+                                    <td>
+                                        <div class="contact contact-rounded contact-bordered contact-lg status-online">
+                                            <img src="/boooda/assets/images/users/user_1.jpg">
+                                            <div class="contact-container">
+                                                <a href="/boooda/#">Juan Obrien</a>
+                                                <span>UI/UX Designer</span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <p><strong>Lorem ipsum dolor sit</strong><br> Aliquam in vestibulum nibh. Phasellus iaculis tristique nulla. Cras eu nisi felis.</p>
+                                    </td>
+                                    <td>25/12/1988</td>
+                                    <td>
+                                        <select class="bs-select" name="user_1">
+                                            <option selected="">Administrator</option>
+                                            <option>Moderator</option>
+                                            <option>Member</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-default btn-icon"><span class="fa fa-pencil"></span></button>
+                                        <button class="btn btn-default btn-icon"><span class="fa fa-times"></span></button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END PAGE CONTAINER -->
+
+</div>

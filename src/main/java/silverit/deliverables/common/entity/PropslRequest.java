@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "T_PROPSL_REQUEST")
 /**
  * 제안 요청

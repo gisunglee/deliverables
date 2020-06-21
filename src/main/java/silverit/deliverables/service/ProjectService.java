@@ -19,14 +19,6 @@ public class ProjectService {
      * 프로젝트 등록
      */
     @Transactional
-    public Long order(Long memberId, Long itemId, int count){
-
-
-        return memberId;
-
-    }
-
-    @Transactional
     public Project save(ProjectForm param) {
         Project project = new Project();
         project.setPrjNm(param.getPrjNm());

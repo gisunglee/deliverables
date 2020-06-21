@@ -23,6 +23,7 @@ public class Project {
     private String prjBeginDe; //프로젝트 시작일자
     private String prjEndDe; //프로젝트 종료일자
     private String prjEngCdNm; //프로젝트 영문 코드 명
+    private String prjDc; //프로젝트 설명
 
     //단계
     @OneToMany(mappedBy = "project")

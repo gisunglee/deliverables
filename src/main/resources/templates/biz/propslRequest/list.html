@@ -11,19 +11,15 @@
 
             // 신규등록
             $("#btnNew").on("click", function(){
-                location.href = "/project/goAdd";
+                location.href = "/propslRequest/goAdd?prjNo=[[${param.prjNo}]]"
             });
 
             // 상세 화면으로 이동
             $(".go-view").on("click", function(){
-                var goalUrl = "/project/view/" + $(this).attr("data-key")
-                location.href = goalUrl;
+                var goalUrl = "/propslRequest/view/" + $(this).attr("data-key")
+                location.href = goalUrl + dataKey;
             });
 
-            // 제안요청서 목록으로 이동
-            $("#btnPropslRequestList").on("click", function(){
-                location.href = "/propslRequest/list?prjNo=" + $("#prjNo").val();
-            });
 
         });
 
@@ -37,8 +33,8 @@
                 <!-- START PAGE HEADING -->
                 <div class="app-heading app-heading-bordered app-heading-page">
                     <div class="title">
-                        <h1>프로젝트 관리</h1>
-                        <p>프로젝트 목록</p>
+                        <h1>제안요청서 관리</h1>
+                        <p>제안요청서를 관리합니다.</p>
                     </div>
 
                 </div>
@@ -58,8 +54,8 @@
                         <!-- START HEADING -->
                         <div class="app-heading app-heading-small">
                             <div class="title">
-<!--                                <h5>Using Template Features</h5>-->
-                                <p>프로젝트 목록을 조회합니다.</p>
+                                <h5>제안요청서 목록</h5>
+                                <p>제안요청서 목록을 조회합니다.</p>
                             </div>
                         </div>
                         <!-- END HEADING -->
@@ -68,39 +64,35 @@
                             <table class="table table-head-light table-striped">
                                 <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>프로젝트 명</th>
-                                    <th>시작일자</th>
-                                    <th>종료일자</th>
+                                    <th>No/SFR-NO</th>
+                                    <th>분류</th>
+                                    <th>정의</th>
+                                    <th>제목</th>
+                                    <th>내용</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-<!--                                private Long prjNo; //프로젝트 번호-->
-<!--                                private String prjNm; //프로젝트 명-->
-<!--                                private String prjBeginDe; //프로젝트 시작일자-->
-<!--                                private String prjEndDe; //프로젝트 종료일자-->
-<!--                                private String prjEngCdNm; //프로젝트 영문 코드 명-->
+<!--                                private Long propslReqNo; //제안 요청 번호-->
+<!--                                private String propslReqNm; //제안 요청 명-->
+<!--                                private String propslReqClasText; //제안 요청 분류 내용-->
+<!--                                private String propslReqText; //제안 요청 내용-->
+<!--                                private String propslReqId; //제안요청 Id-->
+<!--                                private String propslReqDefiText; //제안 요청 정의 내용-->
+<!--                                private String relPrdcWtrText; //관련 산출물 내용-->
+<!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
-                                <tr th:each="item : ${projectList}">
-                                    <input type="hidden" id="prjNo" th:value="${item.prjNo}"/>
-                                    <td>
-                                        <div class="contact contact-rounded contact-bordered contact-lg status-online">
-                                            <img src="/boooda/assets/images/users/user_1.jpg">
-                                            <div class="contact-container">
-                                                <a href="/boooda/#" th:text="${item.prjNo}"></a>
-                                                <span th:text="${item.prjEngCdNm}"></span>
-                                            </div>
-                                        </div>
+                                <tr th:each="item : ${propslRequestList}">
+                                    <td class="go-view" th:attr="data-key=#{item.propslReqNo}">
+                                        <p><strong th:text="${item.propslReqId}"></strong><br th:text="${item.propslReqNo}"></p>
                                     </td>
-                                    <td class="go-view" th:attr="data-key=${item.prjNo}">
-                                        <p><strong th:text="${item.prjNm}"></strong><br th:text="${item.prjNm}"></p>
-                                    </td>
-                                    <td th:text="${item.prjBeginDe}"></td>
-                                    <td th:text="${item.prjEndDe}"></td>
+                                    <td th:text="${item.propslReqClasText}"></td>
+                                    <td th:text="${item.propslReqDefiText}"></td>
+                                    <td th:text="${item.propslReqNm}"></td>
+                                    <td th:text="${item.propslReqText}"></td>
                                     <td>
-                                        <button class="btn btn-default btn-icon" id="btnPropslRequestList"><span class="icon-list"></span></button>
+                                        <button class="btn btn-default btn-icon" id="btnPropslRequestList"><span class="icon-pencil"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-users"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-chart-bars"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-clock"></span></button>

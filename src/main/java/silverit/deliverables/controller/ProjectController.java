@@ -4,10 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.form.ProjectForm;
 import silverit.deliverables.project.repository.ProjectRepository;
@@ -15,6 +12,7 @@ import silverit.deliverables.service.ProjectService;
 import sun.rmi.runtime.Log;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @Controller
@@ -23,11 +21,15 @@ public class ProjectController {
 
     final ProjectRepository projectRepository;
     final ProjectService projectService;
-    
-    
+
+    /**
+     * 프로젝트 목록
+     * @param model
+     * @return
+     */
     @RequestMapping("/project/list")
     public String list(Model model){
-        //프로젝트 목록 조회
+
         List<Project> projectList = projectRepository.findAll();
 
         model.addAttribute("projectList", projectList);
@@ -35,26 +37,49 @@ public class ProjectController {
         return "biz/project/list";
     }
 
+    /**
+     * 프로젝트 등록 화면 이동
+     * @param projectForm
+     * @param model
+     * @return
+     */
     @RequestMapping("/project/goAdd")
     public String add(ProjectForm projectForm, Model model){
 
         return "biz/project/add";
     }
 
-
+    /**
+     * 프로젝트 등록
+     * @param projectForm
+     * @return
+     */
     @PostMapping("/project/add")
-    public @ResponseBody ProjectForm save(@ModelAttribute("projectForm") ProjectForm projectForm, Project p, Model model, String prjNm){
+    public @ResponseBody ProjectForm save(@ModelAttribute("projectForm") ProjectForm projectForm){
 
         Project project = projectService.save(projectForm);
 
         BeanUtils.copyProperties(project, projectForm);
 
-        System.out.println(projectForm.getPrjNm());
-        System.out.println(projectForm.getPrjNm());
-        System.out.println(projectForm.getPrjNm());
-        System.out.println(projectForm.getPrjNm());
-
         return projectForm;
+    }
+
+    /**
+     * 프로젝트
+     * @param dataKey
+     * @param model
+     * @return
+     */
+    @GetMapping("/project/view/{dataKey}")
+    public String view(@PathVariable Long dataKey, Model model){
+
+        Optional<Project> project = projectRepository.findById(dataKey);
+        ProjectForm projectForm = new ProjectForm();
+        BeanUtils.copyProperties(project, projectForm);
+
+        model.addAttribute("project", projectForm);
+
+        return "biz/project/view";
     }
 
 }

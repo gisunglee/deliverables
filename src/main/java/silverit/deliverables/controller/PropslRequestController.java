@@ -5,13 +5,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.entity.PropslRequest;
-import silverit.deliverables.common.form.ProjectForm;
 import silverit.deliverables.common.form.PropslRequestForm;
-import silverit.deliverables.project.repository.ProjectRepository;
 import silverit.deliverables.project.repository.PropslRequestRepository;
-import silverit.deliverables.service.ProjectService;
 import silverit.deliverables.service.PropslRequestService;
 
 import java.util.List;
@@ -47,7 +43,7 @@ public class PropslRequestController {
      * @return
      */
     @RequestMapping("/propslRequest/goAdd")
-    public String add(PropslRequestForm propslRequestForm, Model model){
+    public String goAdd(PropslRequestForm propslRequestForm, Model model){
 
         return "biz/propslRequest/add";
     }
@@ -58,7 +54,7 @@ public class PropslRequestController {
      * @return
      */
     @PostMapping("/propslRequest/add")
-    public @ResponseBody PropslRequestForm save(@ModelAttribute("propslRequestForm") PropslRequestForm propslRequestForm, Long prjNo){
+    public @ResponseBody PropslRequestForm add(@ModelAttribute("propslRequestForm") PropslRequestForm propslRequestForm, Long prjNo){
 
         PropslRequest propslRequest = propslRequestService.save(propslRequestForm, prjNo);
 
@@ -68,13 +64,13 @@ public class PropslRequestController {
     }
 
     /**
-     * 상세보기
+     * 수정화면이동
      * @param dataKey
      * @param model
      * @return
      */
-    @GetMapping("/propslRequest/view/{dataKey}")
-    public String view(@PathVariable Long dataKey, Model model){
+    @GetMapping("/propslRequest/goEdit/{dataKey}")
+    public String goEdit(@PathVariable Long dataKey, Model model){
 
         Optional<PropslRequest> propslRequest = propslRequestRepository.findById(dataKey);
 
@@ -83,7 +79,22 @@ public class PropslRequestController {
 
         model.addAttribute("propslRequest", propslRequestForm);
 
-        return "biz/propslRequest/view";
+        return "biz/propslRequest/edit";
+    }
+
+    /**
+     * 수정
+     * @param propslRequestForm
+     * @return
+     */
+    @PostMapping("/propslRequest/edit")
+    public @ResponseBody PropslRequestForm edit(@ModelAttribute("propslRequestForm") PropslRequestForm propslRequestForm, Long prjNo){
+
+        PropslRequest propslRequest = propslRequestService.save(propslRequestForm, prjNo);
+
+        BeanUtils.copyProperties(propslRequest, propslRequestForm);
+
+        return propslRequestForm;
     }
 
 }

@@ -8,53 +8,51 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
+        var domainNm = "propslRequest";
+
+        $(document).ready(function(){
+
+                $('.editor-summernote').summernote({
+                    height: 300,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['insert', ['picture','link','video']]
+                    ]
+                });
+
+                $(window).resize();
 
 
-$(document).ready(function(){
+                // 저장
+                $("#btnSave").on("click", function(){
 
-        $('.editor-summernote').summernote({
-            height: 300,
-            toolbar: [
-                // [groupName, [list of button]]
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough', 'superscript', 'subscript']],
-                ['fontsize', ['fontsize']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['insert', ['picture','link','video']]
-            ]
+                    var sCallbackFn = function (data) {
+                        setTimeout(function(){
+                            location.href = "/"+ domainNm +"/list";
+                        },1000);
+                    };
+
+                    var fCallbackFn = function (xhr, status) {
+                    };
+
+                    var ajax_post = new POST("/"+ domainNm +"/add"
+                                            , "form1"
+                                            , sCallbackFn
+                                            , fCallbackFn);
+
+                });
+
+                // 목록으로 이동
+                $("#btnList").on("click", function(){
+                    location.href = "/" + domainNm + "/list";
+                });
+
         });
-
-        $(window).resize();
-
-        // 저장
-        $("#btnSave").on("click", function(){
-
-            // Editer 값 input에 복사
-            // $("#propslReqText").val($('.editor-summernote').html());
-
-            var sCallbackFn = function (data) {
-                setTimeout(function(){
-                    location.href = "/propslRequest/list";
-                },1000);
-            };
-
-            var fCallbackFn = function (xhr, status) {
-            };
-
-            var ajax_post = new POST("/propslRequest/add"
-                                    , "form1"
-                                    , sCallbackFn
-                                    , fCallbackFn);
-
-        });
-
-        // 목록으로 이동
-        $("#btnList").on("click", function(){
-            location.href = "/propslRequest/list";
-        });
-
-});
 
     </script>
 
@@ -68,9 +66,6 @@ $(document).ready(function(){
 
 
 <div layout:fragment="content">
-
-
-
 
                 <!-- START PAGE HEADING -->
 

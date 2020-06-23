@@ -5,19 +5,18 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
-
+        var domainNm = "propslRequest";
 
         $(document).ready(function(){
 
             // 신규등록
             $("#btnNew").on("click", function(){
-                location.href = "/propslRequest/goAdd?prjNo=[[${param.prjNo}]]"
+                location.href = "/" + domainNm + "/goAdd?prjNo=[[${param.prjNo}]]"
             });
 
-            // 상세 화면으로 이동
-            $(".go-view").on("click", function(){
-                var goalUrl = "/propslRequest/view/" + $(this).attr("data-key")
-                location.href = goalUrl + dataKey;
+            // 수정 화면으로 이동
+            $(".go-edit").on("click", function(){
+                location.href = "/" + domainNm + "/goEdit/" + $(this).attr("data-key");
             });
 
 
@@ -84,7 +83,7 @@
 <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
                                 <tr th:each="item : ${propslRequestList}">
-                                    <td class="go-view" th:attr="data-key=#{item.propslReqNo}">
+                                    <td class="go-edit" th:attr="data-key=${item.propslReqNo}">
                                         <p><strong th:text="${item.propslReqId}"></strong><br th:text="${item.propslReqNo}"></p>
                                     </td>
                                     <td th:text="${item.propslReqClasText}"></td>

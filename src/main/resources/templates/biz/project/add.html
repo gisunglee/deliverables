@@ -8,35 +8,35 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
+        var domainNm = "project";
 
+        $(document).ready(function(){
 
-$(document).ready(function(){
+                // 저장
+                $("#btnSave").on("click", function(){
 
-        // 저장
-        $("#btnSave").on("click", function(){
+                    var sCallbackFn = function (data) {
+                        setTimeout(function(){
+                            location.href = "/" + domainNm + "/list";
+                        },1000);
+                    };
 
-            var sCallbackFn = function (data) {
-                setTimeout(function(){
-                    location.href = "/project/list";
-                },1000);
-            };
+                    var fCallbackFn = function (xhr, status) {
+                    };
 
-            var fCallbackFn = function (xhr, status) {
-            };
+                    var ajax_post = new POST("/" + domainNm + "/add"
+                                            , "form1"
+                                            , sCallbackFn
+                                            , fCallbackFn);
 
-            var ajax_post = new POST("/project/add"
-                                    , "form1"
-                                    , sCallbackFn
-                                    , fCallbackFn);
+                });
+
+                // 목록으로 이동
+                $("#btnList").on("click", function(){
+                    location.href = "/" + domainNm + "/list";
+                });
 
         });
-
-        // 목록으로 이동
-        $("#btnList").on("click", function(){
-            location.href = "/project/list";
-        });
-
-});
 
     </script>
 

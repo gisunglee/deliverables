@@ -27,12 +27,8 @@
 
                 $(window).resize();
 
-
                 // 저장
-                $("#btnSave").on("click", function(){
-
-                    // Editer 값 input에 복사
-                    // $("#propslReqText").val($('.editor-summernote').html());
+                $("#btnEdit").on("click", function(){
 
                     var sCallbackFn = function (data) {
                         setTimeout(function(){
@@ -43,7 +39,7 @@
                     var fCallbackFn = function (xhr, status) {
                     };
 
-                    var ajax_post = new POST("/"+ domainNm +"/add"
+                    var ajax_post = new POST("/"+ domainNm +"/edit"
                                             , "form1"
                                             , sCallbackFn
                                             , fCallbackFn);
@@ -95,8 +91,8 @@
 
             <div class="app-heading app-heading-small">
                 <div class="title">
-                    <h2>제안요청서 등록</h2>
-                    <p>제안요청서 정보를 입력해 주세요!</p>
+                    <h2>제안요청서 상세/수정</h2>
+                    <p>제안요청서 상세정보를 조회합니다.</p>
                 </div>
             </div>
 
@@ -119,39 +115,39 @@
             <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
             <form id="form1" class="form-horizontal" method="post">
-                <input type="hidden" name="prjNo" th:value="${param.prjNo}"/>
+                <input type="hidden" name="propslReqNo" th:value="${propslRequest.propslReqNo}"/>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 번호</label>
                     <div class="col-md-10">
-                        <input type="text" name="propslReqId" class="form-control" placeholder="제안요청 번호를 입력해 주세요">
+                        <input type="text" name="propslReqId" class="form-control" th:value="${propslRequest.propslReqId}" placeholder="제안요청 번호를 입력해 주세요">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 분류</label>
                     <div class="col-md-10">
-                        <input type="text" name="propslReqClasText" class="form-control" placeholder="제안요청 분류를 입력해 주세요">
+                        <input type="text" name="propslReqClasText" class="form-control" th:value="${propslRequest.propslReqClasText}" placeholder="제안요청 분류를 입력해 주세요">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 정의</label>
                     <div class="col-md-10">
-                        <input type="text" name="propslReqDefiText" class="form-control" placeholder="제안요청 정릐를 입력해 주세요">
+                        <input type="text" name="propslReqDefiText" class="form-control" th:value="${propslRequest.propslReqDefiText}" placeholder="제안요청 정릐를 입력해 주세요">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 명</label>
                     <div class="col-md-10">
-                        <input type="text" name="propslReqNm" class="form-control" placeholder="제안요청 명을 입력해 주세요">
+                        <input type="text" name="propslReqNm" class="form-control" th:value="${propslRequest.propslReqNm}" placeholder="제안요청 명을 입력해 주세요">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 내용</label>
-                    <textarea class="editor-summernote" id="propslReqText" name="propslReqText" ></textarea>
+                    <textarea class="editor-summernote" id="propslReqText" name="propslReqText" th:text="${propslRequest.propslReqText}"></textarea>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">관련산출물</label>
                     <div class="col-md-10">
-                        <input type="text" name="relPrdcWtrText" class="form-control" placeholder="제안요청 관련산출물을 입력해 주세요">
+                        <input type="text" name="relPrdcWtrText" class="form-control" th:value="${propslRequest.relPrdcWtrText}" placeholder="제안요청 관련산출물을 입력해 주세요">
                     </div>
                 </div>
 
@@ -163,7 +159,7 @@
         <!-- END BASIC INPUTS -->
 
         <div class="form-group">
-            <button class="btn btn-default" type="button" id="btnSave">저장</button>
+            <button class="btn btn-default" type="button" id="btnEdit">수정</button>
         </div>
         <div class="form-group">
             <button class="btn btn-default" type="button" id="btnList">목록</button>

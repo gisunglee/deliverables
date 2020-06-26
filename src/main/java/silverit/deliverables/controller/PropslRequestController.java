@@ -5,8 +5,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.entity.PropslRequest;
 import silverit.deliverables.common.form.PropslRequestForm;
+import silverit.deliverables.project.repository.ProjectRepository;
 import silverit.deliverables.project.repository.PropslRequestRepository;
 import silverit.deliverables.service.PropslRequestService;
 
@@ -19,6 +21,8 @@ public class PropslRequestController {
 
     final PropslRequestRepository propslRequestRepository;
     final PropslRequestService propslRequestService;
+
+    final ProjectRepository projectRepository;
 
 
     /**
@@ -44,6 +48,10 @@ public class PropslRequestController {
      */
     @RequestMapping("/propslRequest/goAdd")
     public String goAdd(PropslRequestForm propslRequestForm, Model model){
+
+        //프로젝트 목록 조회
+        List<Project> projectList = projectRepository.findAll();
+        model.addAttribute("projectList", projectList);
 
         return "biz/propslRequest/add";
     }

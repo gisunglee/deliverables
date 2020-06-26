@@ -16,13 +16,13 @@
 
             // 상세 화면으로 이동
             $(".go-view").on("click", function(){
-                var goalUrl = "/project/view/" + $(this).attr("data-key")
+                var goalUrl = "/project/view/" + $(this).attr("data-key");
                 location.href = goalUrl;
             });
 
             // 제안요청서 목록으로 이동
-            $("#btnPropslRequestList").on("click", function(){
-                location.href = "/propslRequest/list?prjNo=" + $("#prjNo").val();
+            $("button[name=btnPropslRequestList]").on("click", function(){
+                location.href = "/propslRequest/list?prjNo=" + $(this).attr("data-key");
             });
 
         });
@@ -99,8 +99,8 @@
                                     </td>
                                     <td th:text="${item.prjBeginDe}"></td>
                                     <td th:text="${item.prjEndDe}"></td>
-                                    <td>
-                                        <button class="btn btn-default btn-icon" id="btnPropslRequestList"><span class="icon-list"></span></button>
+                                    <td >
+                                        <button class="btn btn-default btn-icon" name="btnPropslRequestList" th:attr="data-key=${item.prjNo}"><span class="icon-list"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-users"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-chart-bars"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-clock"></span></button>

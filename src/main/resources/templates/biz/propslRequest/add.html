@@ -116,7 +116,17 @@
 <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
                         <form id="form1" class="form-horizontal" method="post">
-                            <input type="hidden" name="prjNo" th:value="${param.prjNo}"/>
+<!--                            <input type="hidden" name="prjNo" th:value="${param.prjNo}"/>-->
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">프로젝트 선택</label>
+                                <div class="col-md-10">
+                                    <select class="bs-select" name="prjNo" >
+                                        <option th:each="item : ${projectList}" th:selected="${item.prjNo eq param.prjNo}" th:value="${item.prjNo}" th:text="${item.prjNm}"></option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-md-2 control-label">제안요청 번호</label>
                                 <div class="col-md-10">

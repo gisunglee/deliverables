@@ -1,5 +1,6 @@
 package silverit.deliverables.common.entity;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -30,7 +31,7 @@ public class PropslRequest {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRJ_NO")
-    @Setter
+    @Setter @Getter
     private Project project;
 
     @OneToMany(mappedBy = "propslRequest")

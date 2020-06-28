@@ -14,11 +14,15 @@
                 location.href = "/" + domainNm + "/goAdd?prjNo=[[${param.prjNo}]]"
             });
 
-            // 수정 화면으로 이동
-            $(".go-edit").on("click", function(){
-                location.href = "/" + domainNm + "/goEdit/" + $(this).attr("data-key");
+            // 상세 화면으로 이동
+            $(".go-view").on("click", function(){
+                location.href = "/" + domainNm + "/goView/" + $(this).attr("data-key");
             });
 
+            // 수정 화면으로 이동
+            $("button[name=btnEditPropslRequest]").on("click", function(){
+                location.href = "/" + domainNm + "/goEdit/" + $(this).attr("data-key");
+            });
 
         });
 
@@ -83,15 +87,15 @@
 <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
                                 <tr th:each="item : ${propslRequestList}">
-                                    <td class="go-edit" th:attr="data-key=${item.propslReqNo}">
+                                    <td>
                                         <p><strong th:text="${item.propslReqId}"></strong><br th:text="${item.propslReqNo}"></p>
                                     </td>
                                     <td th:text="${item.propslReqClasText}"></td>
                                     <td th:text="${item.propslReqDefiText}"></td>
-                                    <td th:text="${item.propslReqNm}"></td>
+                                    <td class="go-view" th:attr="data-key=${item.propslReqNo}" style="cursor: pointer" th:text="${item.propslReqNm}"></td>
                                     <td th:utext="${item.propslReqText}"></td>
                                     <td>
-                                        <button class="btn btn-default btn-icon" id="btnPropslRequestList"><span class="icon-pencil"></span></button>
+                                        <button class="btn btn-default btn-icon" name="btnEditPropslRequest" th:attr="data-key=${item.propslReqNo}"><span class="icon-pencil"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-users"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-chart-bars"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-clock"></span></button>

@@ -75,7 +75,7 @@ public class ProjectController {
 
         Optional<Project> project = projectRepository.findById(dataKey);
         ProjectForm projectForm = new ProjectForm();
-        BeanUtils.copyProperties(project, projectForm);
+        BeanUtils.copyProperties(project.get(), projectForm);
 
         model.addAttribute("project", projectForm);
 

@@ -31,9 +31,11 @@
                 // 저장
                 $("#btnSave").on("click", function(){
 
+                    var prjNo = $("select[name=prjNo]").val();
+
                     var sCallbackFn = function (data) {
                         setTimeout(function(){
-                            location.href = "/"+ domainNm +"/list";
+                            location.href = "/"+ domainNm +"/list?prjNo=" + prjNo;
                         },1000);
                     };
 

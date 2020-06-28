@@ -10,6 +10,7 @@ import silverit.deliverables.common.form.PropslRequestForm;
 import silverit.deliverables.project.repository.ProjectRepository;
 import silverit.deliverables.project.repository.PropslRequestRepository;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -25,23 +26,33 @@ public class PropslRequestService {
      */
     @Transactional
     public PropslRequest save(PropslRequestForm param, Long prjNo) {
-        // 프로젝트 조회
-        Optional<Project> project = findOne(prjNo);
+
+        Project Project = projectRepository.findById(prjNo).orElseThrow(() -> new NullPointerException("Project 가 존재하지 않습니다."));
 
         PropslRequest propslRequest = new PropslRequest();
 
         //프로젝트 존재시 프로젝트 설정
-        if(project.isPresent()){
-            BeanUtils.copyProperties(param, propslRequest);
-            propslRequest.setProject(project.get());
-        }else{
-            throw new NullPointerException("Project 가 존재하지 않습니다.");
-        }
+        BeanUtils.copyProperties(param, propslRequest);
+        propslRequest.setProject(Project);
 
         return propslRequestRepository.save(propslRequest);
     }
 
-    public Optional<Project> findOne(Long prjNo) {
-        return projectRepository.findById(prjNo);
+    /**
+     * 제안요청서 수정
+     */
+    @Transactional
+    public PropslRequest edit(PropslRequestForm param) {
+
+        PropslRequest propslRequest = propslRequestRepository.getOne(param.getPropslReqNo());
+        //Project project = propslRequest.getProject();
+
+        BeanUtils.copyProperties(param, propslRequest);
+
+        return propslRequestRepository.save(propslRequest);
     }
+
+
+
+
 }

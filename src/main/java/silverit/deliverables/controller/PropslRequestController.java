@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.entity.PropslRequest;
+import silverit.deliverables.common.form.ProjectForm;
 import silverit.deliverables.common.form.PropslRequestForm;
 import silverit.deliverables.project.repository.ProjectRepository;
 import silverit.deliverables.project.repository.PropslRequestRepository;
@@ -71,6 +72,30 @@ public class PropslRequestController {
         return propslRequestForm;
     }
 
+
+    /**
+     * 상세화면이동
+     * @param dataKey
+     * @param model
+     * @return
+     */
+    @GetMapping("/propslRequest/goView/{dataKey}")
+    public String goView(@PathVariable Long dataKey, Model model){
+
+        Optional<PropslRequest> propslRequest = propslRequestRepository.findById(dataKey);
+        Project project = propslRequest.orElse(null).getProject();
+
+        PropslRequestForm propslRequestForm = new PropslRequestForm();
+        ProjectForm projectForm = new ProjectForm();
+        BeanUtils.copyProperties(propslRequest.get(), propslRequestForm);
+        BeanUtils.copyProperties(project, projectForm);
+
+        model.addAttribute("propslRequest", propslRequestForm);
+        model.addAttribute("project", projectForm);
+
+        return "biz/propslRequest/view";
+    }
+
     /**
      * 수정화면이동
      * @param dataKey
@@ -83,7 +108,7 @@ public class PropslRequestController {
         Optional<PropslRequest> propslRequest = propslRequestRepository.findById(dataKey);
 
         PropslRequestForm propslRequestForm = new PropslRequestForm();
-        BeanUtils.copyProperties(propslRequest, propslRequestForm);
+        BeanUtils.copyProperties(propslRequest.get(), propslRequestForm);
 
         model.addAttribute("propslRequest", propslRequestForm);
 
@@ -98,7 +123,7 @@ public class PropslRequestController {
     @PostMapping("/propslRequest/edit")
     public @ResponseBody PropslRequestForm edit(@ModelAttribute("propslRequestForm") PropslRequestForm propslRequestForm, Long prjNo){
 
-        PropslRequest propslRequest = propslRequestService.save(propslRequestForm, prjNo);
+        PropslRequest propslRequest = propslRequestService.edit(propslRequestForm);
 
         BeanUtils.copyProperties(propslRequest, propslRequestForm);
 

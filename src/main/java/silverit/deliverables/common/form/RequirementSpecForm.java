@@ -1,22 +1,21 @@
-package silverit.deliverables.common.entity;
+package silverit.deliverables.common.form;
 
 import lombok.Getter;
 import lombok.Setter;
+import silverit.deliverables.common.entity.Module;
+import silverit.deliverables.common.entity.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
-@Entity
+@Setter
 @Getter
-@Table(name = "T_REQUIREMENT_SPEC")
 /**
  * 요구사항 명세
  */
-public class RequirementSpec {
+public class RequirementSpecForm {
 
-    @Id @GeneratedValue
-    private String requirementNo; //요구사항 번호
+    private Long requirementNo; //요구사항 번호
     private String requirementClasCd; //요구사항 분류 코드
     private String requirementDefi; //요구사항 정의
     private String requirementText; //요구사항 내용
@@ -37,63 +36,5 @@ public class RequirementSpec {
     private String noteCn;//노트 내용
 
     private String modulNo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRJ_NO")
-    @Setter
-    private Project project; // 프로젝트
-
-    @OneToMany(mappedBy = "requirementSpec")
-    private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑
-
-    @OneToMany(mappedBy = "requirementSpec")
-    private List<Menu> menus = new ArrayList<>(); //메뉴
-
-    @OneToMany(mappedBy = "requirementSpec")
-    private List<Module> modules = new ArrayList<>(); //모듈
-
-    @OneToMany(mappedBy = "requirementSpec")
-    private List<Program> programs = new ArrayList<>(); //프로그램
-
-    @OneToMany(mappedBy = "requirementSpec")
-    private List<Function> functions = new ArrayList<>(); //기능
-
-    @OneToMany(mappedBy = "requirementSpec")
-    private List<RequirementOrgn> requirementOrgns = new ArrayList<>(); //요구사항출처
-
-    //연관관계 편의 메서드 (요구사항명세 <-> 프로젝트)
-    public void changeProject(Project project) {
-        if(this.project != null) {
-            this.project.getRequirementSpecs().remove(this);
-        }
-        this.project = project;
-        project.getRequirementSpecs().add(this);
-    }
-
-    //연관 관계 편의 메서드 (요구사항명세 <-> 제안요청요구사항매핑)
-    public void changePropslRequirementMppg(PropslRequirementMppg propslRequirementMppg){
-        this.propslRequirementMppgs.add(propslRequirementMppg);
-        propslRequirementMppg.setRequirementSpec(this);
-    }
-
-    //연관 관계 편의 메서드 (요구사항명세 <-> 메뉴)
-    public void changeMenu(Menu menu){
-        this.getMenus().add(menu);
-        menu.setRequirementSpec(this);
-    }
-
-    //연관 관계 편이 메서드 (요구사항명세 <-> 기능)
-    public void changeFunction(Function function){
-        this.functions.add(function);
-        function.setRequirementSpec(this);
-    }
-
-    //연관 관계 편이 메서드 (요구사항명세 <-> 요구사항출처)
-    public void changeRequirementOrgns(RequirementOrgn requirementOrgn){
-        this.requirementOrgns.add(requirementOrgn);
-        requirementOrgn.setRequirementSpec(this);
-    }
-
-
 
 }

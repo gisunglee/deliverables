@@ -16,7 +16,7 @@ import java.util.List;
 public class RequirementSpec {
 
     @Id @GeneratedValue
-    private String requirementNo; //요구사항 번호
+    private Long requirementNo; //요구사항 번호
     private String requirementClasCd; //요구사항 분류 코드
     private String requirementDefi; //요구사항 정의
     private String requirementText; //요구사항 내용

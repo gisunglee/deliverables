@@ -8,7 +8,7 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
-        var domainNm = "propslRequest";
+        var domainNm = "requirement";
 
         $(document).ready(function(){
 
@@ -99,27 +99,27 @@
                 <input type="hidden" name="prjNo" th:value="${param.prjNo}"/>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 번호</label>
-                    <div class="col-md-10" th:text="${propslRequest.propslReqId}" />
+                    <div class="col-md-10" th:text="${requirement.propslReqId}" />
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 분류</label>
-                    <div class="col-md-10" th:text="${propslRequest.propslReqClasText}" />
+                    <div class="col-md-10" th:text="${requirement.propslReqClasText}" />
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 정의</label>
-                    <div class="col-md-10" th:text="${propslRequest.propslReqDefiText}" />
+                    <div class="col-md-10" th:text="${requirement.propslReqDefiText}" />
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 명</label>
-                    <div class="col-md-10" th:text="${propslRequest.propslReqNm}" />
+                    <div class="col-md-10" th:text="${requirement.propslReqNm}" />
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">제안요청 내용</label>
-                    <textarea class="editor-summernote" id="propslReqText" name="propslReqText" th:text="${propslRequest.propslReqText}"></textarea>
+                    <textarea class="editor-summernote" id="propslReqText" name="propslReqText" th:text="${requirement.propslReqText}"></textarea>
                 </div>
                 <div class="form-group">
                     <label class="col-md-2 control-label">관련산출물</label>
-                    <div class="col-md-10" th:text="${propslRequest.relPrdcWtrText}" />
+                    <div class="col-md-10" th:text="${requirement.relPrdcWtrText}" />
                 </div>
 
 

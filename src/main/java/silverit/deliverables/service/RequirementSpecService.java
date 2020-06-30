@@ -5,51 +5,48 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import silverit.deliverables.common.entity.Project;
-import silverit.deliverables.common.entity.PropslRequest;
-import silverit.deliverables.common.form.PropslRequestForm;
+import silverit.deliverables.common.entity.RequirementSpec;
+import silverit.deliverables.common.form.RequirementSpecForm;
 import silverit.deliverables.project.repository.ProjectRepository;
-import silverit.deliverables.project.repository.PropslRequestRepository;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import silverit.deliverables.project.repository.RequirementSpecRepository;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class PropslRequestService {
+public class RequirementSpecService {
 
-    final PropslRequestRepository propslRequestRepository;
-    final ProjectRepository projectRepository;
+    final RequirementSpecRepository requirementSpecRepository;
+//    final ProjectRepository projectRepository;
 
     /**
-     * 제안요청서 등록
+     * 요구사항명세 등록
      */
     @Transactional
-    public PropslRequest save(PropslRequestForm param, Long prjNo) {
+    public RequirementSpec save(RequirementSpecForm param, Long prjNo) {
 
-        Project Project = projectRepository.findById(prjNo).orElseThrow(() -> new NullPointerException("Project 가 존재하지 않습니다."));
+//        Project Project = projectRepository.findById(prjNo).orElseThrow(() -> new NullPointerException("Project 가 존재하지 않습니다."));
 
-        PropslRequest propslRequest = new PropslRequest();
+        RequirementSpec requirementSpec = new RequirementSpec();
 
         //프로젝트 존재시 프로젝트 설정
-        BeanUtils.copyProperties(param, propslRequest);
-        propslRequest.setProject(Project);
+        BeanUtils.copyProperties(param, requirementSpec);
+//        requirementSpec.setProject(Project);
 
-        return propslRequestRepository.save(propslRequest);
+        return requirementSpecRepository.save(requirementSpec);
     }
 
     /**
-     * 제안요청서 수정
+     * 요구사항명세 수정
      */
     @Transactional
-    public PropslRequest edit(PropslRequestForm param) {
+    public RequirementSpec edit(RequirementSpecForm param) {
 
-        PropslRequest propslRequest = propslRequestRepository.getOne(param.getPropslReqNo());
-        //Project project = propslRequest.getProject();
+        RequirementSpec requirementSpec = requirementSpecRepository.getOne(param.getRequirementNo());
+        //Project project = requirementSpec.getProject();
 
-        BeanUtils.copyProperties(param, propslRequest);
+        BeanUtils.copyProperties(param, requirementSpec);
 
-        return propslRequestRepository.save(propslRequest);
+        return requirementSpecRepository.save(requirementSpec);
     }
 
     

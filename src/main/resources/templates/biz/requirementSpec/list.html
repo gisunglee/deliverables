@@ -5,7 +5,7 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
-        var domainNm = "propslRequest";
+        var domainNm = "requirementSpec";
 
         $(document).ready(function(){
 
@@ -77,25 +77,25 @@
                                 </thead>
                                 <tbody>
 
-<!--                                private Long propslReqNo; //제안 요청 번호-->
-<!--                                private String propslReqNm; //제안 요청 명-->
-<!--                                private String propslReqClasText; //제안 요청 분류 내용-->
-<!--                                private String propslReqText; //제안 요청 내용-->
-<!--                                private String propslReqId; //제안요청 Id-->
-<!--                                private String propslReqDefiText; //제안 요청 정의 내용-->
+<!--                                private Long requirementNo; //제안 요청 번호-->
+<!--                                private String requirementNm; //제안 요청 명-->
+<!--                                private String requirementClasText; //제안 요청 분류 내용-->
+<!--                                private String requirementText; //제안 요청 내용-->
+<!--                                private String requirementId; //제안요청 Id-->
+<!--                                private String requirementDefiText; //제안 요청 정의 내용-->
 <!--                                private String relPrdcWtrText; //관련 산출물 내용-->
 <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
-                                <tr th:each="item : ${propslRequestList}">
+                                <tr th:each="item : ${requirementSpecList}">
                                     <td>
-                                        <p><strong th:text="${item.propslReqId}"></strong><br th:text="${item.propslReqNo}"></p>
+                                        <p><strong th:text="${item.requirementId}"></strong><br th:text="${item.requirementNo}"></p>
                                     </td>
-                                    <td th:text="${item.propslReqClasText}"></td>
-                                    <td th:text="${item.propslReqDefiText}"></td>
-                                    <td class="go-view" th:attr="data-key=${item.propslReqNo}" style="cursor: pointer" th:text="${item.propslReqNm}"></td>
-                                    <td th:utext="${item.propslReqText}"></td>
+                                    <td th:text="${item.requirementClasText}"></td>
+                                    <td th:text="${item.requirementDefiText}"></td>
+                                    <td class="go-view" th:attr="data-key=${item.requirementNo}" style="cursor: pointer" th:text="${item.requirementNm}"></td>
+                                    <td th:utext="${item.requirementText}"></td>
                                     <td>
-                                        <button class="btn btn-default btn-icon" name="btnEditPropslRequest" th:attr="data-key=${item.propslReqNo}"><span class="icon-pencil"></span></button>
+                                        <button class="btn btn-default btn-icon" name="btnEditPropslRequest" th:attr="data-key=${item.requirementNo}"><span class="icon-pencil"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-users"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-chart-bars"></span></button>
                                         <button class="btn btn-default btn-icon"><span class="icon-clock"></span></button>

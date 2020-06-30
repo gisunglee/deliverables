@@ -8,7 +8,7 @@
 
 <th:block layout:fragment="beyondPageScript">
     <script type="text/javascript">
-        var domainNm = "propslRequest";
+        var domainNm = "requirementSpec";
 
         $(document).ready(function(){
 
@@ -124,7 +124,7 @@
                                 <label class="col-md-2 control-label">프로젝트 선택</label>
                                 <div class="col-md-10">
                                     <select class="bs-select" name="prjNo" >
-                                        <option th:each="item : ${projectList}" th:selected="${item.prjNo eq param.prjNo}" th:value="${item.prjNo}" th:text="${item.prjNm}"></option>
+                                        <option th:each="item : ${propslRequestList}" th:selected="${item.prjNo eq param.prjNo}" th:value="${item.prjNo}" th:text="${item.prjNm}"></option>
                                     </select>
                                 </div>
                             </div>

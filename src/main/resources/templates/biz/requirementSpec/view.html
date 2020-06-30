@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/booodaLayout}">
+
+
+
+
+<th:block layout:fragment="beyondPageScript">
+    <script type="text/javascript">
+        var domainNm = "propslRequest";
+
+        $(document).ready(function(){
+
+                $('.editor-summernote').summernote({
+                    height: 300,
+                    toolbar: [
+                        // [groupName, [list of button]]
+                        ['style', ['bold', 'italic', 'underline', 'clear']],
+                        ['font', ['strikethrough', 'superscript', 'subscript']],
+                        ['fontsize', ['fontsize']],
+                        ['color', ['color']],
+                        ['para', ['ul', 'ol', 'paragraph']],
+                        ['insert', ['picture','link','video']]
+                    ]
+                });
+
+                $(window).resize();
+
+                // 목록으로 이동
+                $("#btnList").on("click", function(){
+                    location.href = "/" + domainNm + "/list";
+                });
+
+        });
+
+    </script>
+
+
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+    /*]]>*/
+    </script>
+
+</th:block>
+
+
+<div layout:fragment="content">
+
+    <!-- START PAGE HEADING -->
+
+    <div class="app-heading app-heading-bordered app-heading-page">
+        <div class="title">
+            <h2>제안요청서 관리</h2>
+            <p>제안요청서를 관리합니다.</p>
+        </div>
+    </div>
+    <div class="app-heading-container app-heading-bordered bottom">
+        <ul class="breadcrumb">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Form Elements</a></li>
+            <li class="active">Default Elements</li>
+        </ul>
+    </div>
+    <!-- END PAGE HEADING -->
+
+    <!-- START PAGE CONTAINER -->
+    <div class="container">
+
+        <!-- BASIC INPUTS -->
+        <div class="block">
+
+            <div class="app-heading app-heading-small">
+                <div class="title">
+<!--                    <h2>제안요청서 등록</h2>-->
+                    <p>제안요청서 정보를 확인하시기 바랍니다.</p>
+                </div>
+            </div>
+
+            <!--                                private Long propslReqNo; //제안요청 번호-->
+            <!--                                private String propslReqNm; //제안요청 명-->
+            <!--                                private String propslReqClasText; //제안요청 분류 내용-->
+            <!--                                private String propslReqText; //제안요청 내용-->
+            <!--                                private String propslReqId; //제안요청 Id-->
+            <!--                                private String propslReqDefiText; //제안요청 정의 내용-->
+            <!--                                private String relPrdcWtrText; //관련 산출물 내용-->
+            <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
+
+
+            <!--                                private String ; //제안요청 명-->
+            <!--                                private String ; //제안요청 분류 내용-->
+            <!--                                private String propslReqText; //제안요청 내용-->
+            <!--                                private String ; //제안요청 Id-->
+            <!--                                private String ; //제안요청 정의 내용-->
+            <!--                                private String ; //관련 산출물 내용-->
+            <!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
+
+            <form id="form1" class="form-horizontal" method="post">
+                <input type="hidden" name="prjNo" th:value="${param.prjNo}"/>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">제안요청 번호</label>
+                    <div class="col-md-10" th:text="${propslRequest.propslReqId}" />
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">제안요청 분류</label>
+                    <div class="col-md-10" th:text="${propslRequest.propslReqClasText}" />
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">제안요청 정의</label>
+                    <div class="col-md-10" th:text="${propslRequest.propslReqDefiText}" />
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">제안요청 명</label>
+                    <div class="col-md-10" th:text="${propslRequest.propslReqNm}" />
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">제안요청 내용</label>
+                    <textarea class="editor-summernote" id="propslReqText" name="propslReqText" th:text="${propslRequest.propslReqText}"></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">관련산출물</label>
+                    <div class="col-md-10" th:text="${propslRequest.relPrdcWtrText}" />
+                </div>
+
+
+
+            </form>
+
+        </div>
+        <!-- END BASIC INPUTS -->
+
+        <div class="form-group">
+            <button class="btn btn-default" type="button" id="btnList">목록</button>
+        </div>
+
+    </div>
+    <!-- END PAGE CONTAINER -->
+
+
+
+
+</div>

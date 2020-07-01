@@ -11,7 +11,7 @@
 
             // 신규등록
             $("#btnNew").on("click", function(){
-                location.href = "/" + domainNm + "/goAdd?prjNo=[[${param.prjNo}]]"
+                location.href = "/" + domainNm + "/goAdd?prjNo=[[${session['prjNo']}]]"
             });
 
             // 상세 화면으로 이동
@@ -36,8 +36,8 @@
                 <!-- START PAGE HEADING -->
                 <div class="app-heading app-heading-bordered app-heading-page">
                     <div class="title">
-                        <h1>제안요청서 관리</h1>
-                        <p>제안요청서를 관리합니다.</p>
+                        <h1>요구사항 명세 관리</h1>
+                        <p>요구사항 명세를 관리합니다.</p>
                     </div>
 
                 </div>
@@ -57,8 +57,8 @@
                         <!-- START HEADING -->
                         <div class="app-heading app-heading-small">
                             <div class="title">
-                                <h5>제안요청서 목록</h5>
-                                <p>제안요청서 목록을 조회합니다.</p>
+                                <h5>요구사항 명세 목록</h5>
+                                <p>요구사항 명세 목록을 조회합니다.</p>
                             </div>
                         </div>
                         <!-- END HEADING -->
@@ -67,32 +67,43 @@
                             <table class="table table-head-light table-striped">
                                 <thead>
                                 <tr>
-                                    <th>No/SFR-NO</th>
-                                    <th>분류</th>
+                                    <th>No/요구사항ID</th>
+                                    <th>상태</th>
+                                    <th>명칭</th>
                                     <th>정의</th>
-                                    <th>제목</th>
                                     <th>내용</th>
                                     <th>관리</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
-<!--                                private Long requirementNo; //제안 요청 번호-->
-<!--                                private String requirementNm; //제안 요청 명-->
-<!--                                private String requirementClasText; //제안 요청 분류 내용-->
-<!--                                private String requirementText; //제안 요청 내용-->
-<!--                                private String requirementId; //제안요청 Id-->
-<!--                                private String requirementDefiText; //제안 요청 정의 내용-->
-<!--                                private String relPrdcWtrText; //관련 산출물 내용-->
-<!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
+<!--                                private Long requirementNo; //요구사항 번호-->
+<!--                                private String requirementClasCd; //요구사항 분류 코드-->
+<!--                                private String requirementDefi; //요구사항 정의-->
+<!--                                private String requirementText; //요구사항 내용-->
+<!--                                private String requirementId; //요구사항 id-->
+<!--                                private String priorRankNo; //우선 순위 번호-->
+<!--                                private String dfflyCd; //난이도 코드-->
+<!--                                private String rstcMaterText; //제약 사항 내용-->
+<!--                                private String inspStdrText; //검사 기준 내용-->
+<!--                                private String fnctSeCd; //기능 구분 코드-->
+<!--                                private String requirementNm; //요구사항 명칭-->
+<!--                                private String aceptncYn; //수용 여부-->
+<!--                                private String chrgEmpId; //담당 사원 id-->
+<!--                                private String entyPathText; //진입 경로 내용-->
+<!--                                private String specProgStatCd; //명세 진행 상태 코드-->
+<!--                                private String apvlReqDtt; //승인 요청 일시-->
+<!--                                private String apvlpsId; //승인자 ID-->
+<!--                                private String apvlDtt; //승인 일시-->
+<!--                                private String noteCn;//노트 내용-->
 
                                 <tr th:each="item : ${requirementSpecList}">
                                     <td>
                                         <p><strong th:text="${item.requirementId}"></strong><br th:text="${item.requirementNo}"></p>
                                     </td>
-                                    <td th:text="${item.requirementClasText}"></td>
-                                    <td th:text="${item.requirementDefiText}"></td>
+                                    <td th:text="${item.specProgStatCd}"></td>
                                     <td class="go-view" th:attr="data-key=${item.requirementNo}" style="cursor: pointer" th:text="${item.requirementNm}"></td>
+                                    <td th:text="${item.requirementDefi}"></td>
                                     <td th:utext="${item.requirementText}"></td>
                                     <td>
                                         <button class="btn btn-default btn-icon" name="btnEditPropslRequest" th:attr="data-key=${item.requirementNo}"><span class="icon-pencil"></span></button>

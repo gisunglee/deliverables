@@ -31,11 +31,11 @@
                 // 저장
                 $("#btnSave").on("click", function(){
 
-                    var prjNo = $("select[name=prjNo]").val();
+                    var propslReqNo = $("select[name=propslReqNo]").val();
 
                     var sCallbackFn = function (data) {
                         setTimeout(function(){
-                            location.href = "/"+ domainNm +"/list?prjNo=" + prjNo;
+                            location.href = "/"+ domainNm +"/list?propslReqNo=" + propslReqNo;
                         },1000);
                     };
 
@@ -73,8 +73,8 @@
 
                 <div class="app-heading app-heading-bordered app-heading-page">
                     <div class="title">
-                        <h2>제안요청서 관리</h2>
-                        <p>제안요청서를 관리합니다.</p>
+                        <h2>요구사항명세 관리</h2>
+                        <p>요구사항명세를 관리합니다.</p>
                     </div>
                 </div>
                 <div class="app-heading-container app-heading-bordered bottom">
@@ -94,76 +94,103 @@
 
                         <div class="app-heading app-heading-small">
                             <div class="title">
-                                <h2>제안요청서 등록</h2>
-                                <p>제안요청서 정보를 입력해 주세요!</p>
+                                <h2>요구사항명세 등록</h2>
+                                <p>요구사항명세 정보를 입력해 주세요!</p>
                             </div>
                         </div>
 
-<!--                                private Long propslReqNo; //제안요청 번호-->
-<!--                                private String propslReqNm; //제안요청 명-->
-<!--                                private String propslReqClasText; //제안요청 분류 내용-->
-<!--                                private String propslReqText; //제안요청 내용-->
-<!--                                private String propslReqId; //제안요청 Id-->
-<!--                                private String propslReqDefiText; //제안요청 정의 내용-->
-<!--                                private String relPrdcWtrText; //관련 산출물 내용-->
-<!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
-
-
-<!--                                private String ; //제안요청 명-->
-<!--                                private String ; //제안요청 분류 내용-->
-<!--                                private String propslReqText; //제안요청 내용-->
-<!--                                private String ; //제안요청 Id-->
-<!--                                private String ; //제안요청 정의 내용-->
-<!--                                private String ; //관련 산출물 내용-->
-<!--                                private String suplmtDemndMaterYn; //추가 요구사항 여부-->
 
                         <form id="form1" class="form-horizontal" method="post">
-<!--                            <input type="hidden" name="prjNo" th:value="${param.prjNo}"/>-->
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">프로젝트 선택</label>
+                                <label class="col-md-2 control-label">제안요청서 선택</label>
                                 <div class="col-md-10">
-                                    <select class="bs-select" name="prjNo" >
-                                        <option th:each="item : ${propslRequestList}" th:selected="${item.prjNo eq param.prjNo}" th:value="${item.prjNo}" th:text="${item.prjNm}"></option>
+                                    <select class="bs-select" name="propslReqNo" >
+                                        <option th:each="item : ${propslRequestList}" th:selected="${item.propslReqNo eq param.propslReqNo}" th:value="${item.propslReqNo}" th:text="${item.propslReqId + '-' + item.propslReqNm}"></option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-2 control-label">제안요청 번호</label>
+                                <label class="col-md-2 control-label">요구사항 ID</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="propslReqId" class="form-control" placeholder="제안요청 번호를 입력해 주세요">
+                                    <input type="text" name="requirementId" class="form-control" placeholder="요구사항 ID를 입력해 주세요">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">제안요청 분류</label>
+                                <label class="col-md-2 control-label">요구사항 분류</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="propslReqClasText" class="form-control" placeholder="제안요청 분류를 입력해 주세요">
+                                    <input type="text" name="requirementClasCd" class="form-control" placeholder="요구사항 분류를 입력해 주세요">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">제안요청 정의</label>
+                                <label class="col-md-2 control-label">요구사항 명칭</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="propslReqDefiText" class="form-control" placeholder="제안요청 정릐를 입력해 주세요">
+                                    <input type="text" name="requirementNm" class="form-control" placeholder="요구사항 명칭을 입력해 주세요">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">제안요청 명</label>
+                                <label class="col-md-2 control-label">요구사항 정의</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="propslReqNm" class="form-control" placeholder="제안요청 명을 입력해 주세요">
+                                    <input type="text" name="requirementDefi" class="form-control" placeholder="요구사항 정의를 입력해 주세요">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">제안요청 내용</label>
-                                <textarea class="editor-summernote" id="propslReqText" name="propslReqText" ></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">관련산출물</label>
+                                <label class="col-md-2 control-label">요구사항 내용</label>
                                 <div class="col-md-10">
-                                    <input type="text" name="relPrdcWtrText" class="form-control" placeholder="제안요청 관련산출물을 입력해 주세요">
+                                    <input type="text" name="requirementText" class="form-control" placeholder="요구사항 내용을 입력해 주세요">
                                 </div>
                             </div>
-
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">우선순위</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="priorRankNo" class="form-control" placeholder="우선 순위를 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">난이도</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="dfflyCd" class="form-control" placeholder="난이도를 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">제약사항 내용</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="rstcMaterText" class="form-control" placeholder="제약사항 내용을 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">검사기준 내용</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="inspStdrText" class="form-control" placeholder="검사기준 내용을 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">수용여부</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="aceptncYn" class="form-control" placeholder="수용 여부를 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">진입경로</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="entyPathText" class="form-control" placeholder="진입 경로를 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">명세진행상태</label>
+                                <div class="col-md-10">
+                                    <input type="text" name="specProgStatCd" class="form-control" placeholder="명세 진행 상태를 입력해 주세요">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">담당자</label>
+                                <div class="col-md-10">
+                                    <select class="bs-select" name="chrgEmpId" >
+                                        <option th:each="item : ${propslRequestList}" th:selected="${item.propslReqNo eq param.propslReqNo}" th:value="${item.propslReqNo}" th:text="${item.propslReqId + '-' + item.propslReqNm}"></option>
+                                    </select>
+                                </div>
+                            </div>
 
 
                         </form>

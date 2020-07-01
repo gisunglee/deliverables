@@ -16,6 +16,7 @@ import silverit.deliverables.project.repository.PropslRequestRepository;
 import silverit.deliverables.project.repository.RequirementSpecRepository;
 import silverit.deliverables.service.RequirementSpecService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,9 +67,9 @@ public class RequirementSpecController {
      * @return
      */
     @PostMapping("/requirementSpec/add")
-    public @ResponseBody RequirementSpecForm add(@ModelAttribute("requirementSpecForm") RequirementSpecForm requirementSpecForm, Long prjNo){
+    public @ResponseBody RequirementSpecForm add(@ModelAttribute("requirementSpecForm") RequirementSpecForm requirementSpecForm, Long propslReqNo){
 
-        RequirementSpec requirementSpec = requirementSpecService.save(requirementSpecForm, prjNo);
+        RequirementSpec requirementSpec = requirementSpecService.save(requirementSpecForm, propslReqNo);
 
         BeanUtils.copyProperties(requirementSpec, requirementSpecForm);
 

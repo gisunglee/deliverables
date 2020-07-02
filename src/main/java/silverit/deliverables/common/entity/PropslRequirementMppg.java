@@ -23,7 +23,7 @@ public class PropslRequirementMppg {
     @Setter
     private RequirementSpec requirementSpec; //요구사항 명세
 
-    //연관 관계 편의 메서드 (제안요청요구사항 <-> 제안요청)
+    //연관 관계 편의 메서드 (요구사항매핑 <-> 제안요청)
     public void changePropslRequest(PropslRequest propslRequest){
         if(this.propslRequest != null){
             this.propslRequest.getPropslRequirementMppgs().remove(this);
@@ -32,7 +32,7 @@ public class PropslRequirementMppg {
         propslRequest.getPropslRequirementMppgs().add(this);
     }
 
-    //연관 관계 편의 메서드 (제안요청요구사항 <-> 요구사항명세세)
+    //연관 관계 편의 메서드 (요구사항매핑 <-> 요구사항명세세)
    public void changeRequirementSpec(RequirementSpec requirementSpec){
         if(this.requirementSpec != null){
             this.requirementSpec.getPropslRequirementMppgs().remove(this);

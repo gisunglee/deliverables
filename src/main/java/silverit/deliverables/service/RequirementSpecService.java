@@ -9,9 +9,11 @@ import silverit.deliverables.common.entity.PropslRequest;
 import silverit.deliverables.common.entity.PropslRequirementMppg;
 import silverit.deliverables.common.entity.RequirementSpec;
 import silverit.deliverables.common.form.RequirementSpecForm;
-import silverit.deliverables.project.repository.ProjectRepository;
 import silverit.deliverables.project.repository.PropslRequestRepository;
+import silverit.deliverables.project.repository.PropslRequirementMppgRepository;
 import silverit.deliverables.project.repository.RequirementSpecRepository;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -20,6 +22,7 @@ public class RequirementSpecService {
 
     final RequirementSpecRepository requirementSpecRepository;
     final PropslRequestRepository propslRequestRepository;
+    final PropslRequirementMppgRepository propslRequirementMppgRepository;
 //    final ProjectRepository projectRepository;
 
     /**
@@ -28,21 +31,32 @@ public class RequirementSpecService {
     @Transactional
     public RequirementSpec save(RequirementSpecForm param, Long propslReqNo) {
 
-//        Project Project = projectRepository.findById(prjNo).orElseThrow(() -> new NullPointerException("Project 가 존재하지 않습니다."));
+        //Project Project = projectRepository.findById(prjNo).orElseThrow(() -> new NullPointerException("Project 가 존재하지 않습니다."));
 
         //요구사항 명세 저장
         RequirementSpec requirementSpec = new RequirementSpec();
         BeanUtils.copyProperties(param, requirementSpec);
-        final RequirementSpec requirementSpeced = requirementSpecRepository.save(requirementSpec);
+        //requirementSpec.copyFromParam(param);
 
         //제안 요청서 조회
-        PropslRequest propslRequest = propslRequestRepository.getOne(propslReqNo);
+        PropslRequest propslRequest = propslRequestRepository.findById(propslReqNo).orElseThrow(() -> new NullPointerException("제안요청서 정보가 존재하지 않습니다."));
+        Project project = propslRequest.getProject();
+        requirementSpec.setProject(project);
 
         //매핑 정보 저장
         PropslRequirementMppg propslRequirementMppg = new PropslRequirementMppg();
-        propslRequirementMppg.changePropslRequest(propslRequest);
-        propslRequirementMppg.changeRequirementSpec(requirementSpeced);
+        propslRequirementMppg.setPropslRequest(propslRequest);
+        propslRequirementMppg.setRequirementSpec(requirementSpec);
+
+        requirementSpec.getPropslRequirementMppgs().add(propslRequirementMppg);
+
+//        propslRequirementMppg.changePropslRequest(propslRequest);
+//        propslRequirementMppg.changeRequirementSpec(requirementSpec);
+
+        final RequirementSpec requirementSpeced = requirementSpecRepository.save(requirementSpec);
         propslRequestRepository.save(propslRequest);
+
+        List<PropslRequirementMppg> propslRequirementMppgs = propslRequest.getPropslRequirementMppgs();
 
         return requirementSpeced;
     }

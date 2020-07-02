@@ -2,6 +2,8 @@ package silverit.deliverables.common.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
+import silverit.deliverables.common.form.RequirementSpecForm;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "T_REQUIREMENT_SPEC")
 /**
  * 요구사항 명세
@@ -18,17 +21,23 @@ public class RequirementSpec {
     @Id @GeneratedValue
     private Long requirementNo; //요구사항 번호
     private String requirementClasCd; //요구사항 분류 코드
+    @Column(length = 1000)
     private String requirementDefi; //요구사항 정의
+    @Column(length = 2000)
     private String requirementText; //요구사항 내용
     private String requirementId; //요구사항 id
     private String priorRankNo; //우선 순위 번호
     private String dfflyCd; //난이도 코드
+    @Column(length = 2000)
     private String rstcMaterText; //제약 사항 내용
+    @Column(length = 2000)
     private String inspStdrText; //검사 기준 내용
     private String fnctSeCd; //기능 구분 코드
+    @Column(length = 1000)
     private String requirementNm; //요구사항 명칭
     private String aceptncYn; //수용 여부
     private String chrgEmpId; //담당 사원 id
+    @Column(length = 1000)
     private String entyPathText; //진입 경로 내용
     private String specProgStatCd; //명세 진행 상태 코드
     private String apvlReqDtt; //승인 요청 일시
@@ -38,12 +47,17 @@ public class RequirementSpec {
 
     private String modulNo;
 
+    //파리미터 값 셋팅
+    public void copyFromParam(RequirementSpecForm requirementSpecForm){
+        BeanUtils.copyProperties(requirementSpecForm, this);
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "PRJ_NO")
     @Setter
     private Project project; // 프로젝트
 
-    @OneToMany(mappedBy = "requirementSpec")
+    @OneToMany(mappedBy = "requirementSpec", cascade = CascadeType.ALL)
     private List<PropslRequirementMppg> propslRequirementMppgs = new ArrayList<>(); //제안요청요구사항매핑
 
     @OneToMany(mappedBy = "requirementSpec")

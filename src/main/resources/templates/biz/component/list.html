@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout/booodaLayout}">
+
+<th:block layout:fragment="beyondPageScript">
+    <script type="text/javascript">
+
+
+        $(document).ready(function(){
+
+            // 신규등록
+            $("#btnNew").on("click", function(){
+                location.href = "/module/goAdd";
+            });
+
+            // 상세 화면으로 이동
+            $(".go-view").on("click", function(){
+                var goalUrl = "/module/view/" + $(this).attr("data-key");
+                location.href = goalUrl;
+            });
+
+        });
+
+    </script>
+
+</th:block>
+
+<th:block layout:fragment="head">
+    <style>
+        .border-no {
+           border: 0px;
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+
+
+
+
+                <!-- START PAGE HEADING -->
+                <div class="app-heading app-heading-bordered app-heading-page">
+                    <div class="title">
+                        <h1>컴포넌트 관리</h1>
+                        <p>컴포넌트 목록</p>
+                    </div>
+
+                </div>
+                <div class="app-heading-container app-heading-bordered bottom">
+                    <ul class="breadcrumb">
+                        <li><a href="/boooda/#">Dashboard</a></li>
+                        <li><a href="/boooda/#">Components</a></li>
+                        <li class="active">Tables</li>
+                    </ul>
+                </div>
+                <!-- END PAGE HEADING -->
+
+                <!-- START PAGE CONTAINER -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="block block-condensed">
+                                <!-- START HEADING -->
+                                <div class="app-heading app-heading-small">
+                                    <div class="title">
+                                        <h5>Table Hover</h5>
+                                        <p>Add class <code>table-hover</code> to get background on hover.</p>
+                                    </div>
+                                </div>
+                                <!-- END HEADING -->
+
+                                <div class="block-content">
+                                    <table class="table table-hover table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th style="width:5%; text-align:center;">No</th>
+                                            <th class="text-center">대분류</th>
+                                            <th class="text-center">중분류</th>
+                                            <th class="text-center">소분류</th>
+                                            <th class="text-center">컴포넌트</th>
+                                            <th class="text-center">관리</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="i: ${#numbers.sequence(1,15)}" style="height:13px;">
+                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id' + i + '1'}"></td>
+                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id' + i + '2'}"></td>
+                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id' + i + '3'}"></td>
+                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id' + i + '4'}"></td>
+                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id' + i + '5'}"></td>
+                                            <td style="padding: 3px 3px;">
+                                                <button class="btn btn-default btn-icon" name="btnPropslRequestList"><span class="icon-list"></span></button>
+                                                <button class="btn btn-default btn-icon"><span class="icon-users"></span></button>
+                                                <button class="btn btn-default btn-icon"><span class="icon-chart-bars"></span></button>
+                                                <button class="btn btn-default btn-icon"><span class="icon-clock"></span></button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-default" type="button" id="btnNew">신규생성</button>
+                    </div>
+
+                    </div>
+
+                </div>
+                <!-- END PAGE CONTAINER -->
+
+</block>

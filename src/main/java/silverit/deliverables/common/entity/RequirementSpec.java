@@ -45,7 +45,7 @@ public class RequirementSpec {
     private String apvlDtt; //승인 일시
     private String noteCn;//노트 내용
 
-    private String modulNo;
+    private String componentNo;
 
     //파리미터 값 셋팅
     public void copyFromParam(RequirementSpecForm requirementSpecForm){
@@ -64,7 +64,7 @@ public class RequirementSpec {
     private List<Menu> menus = new ArrayList<>(); //메뉴
 
     @OneToMany(mappedBy = "requirementSpec")
-    private List<Module> modules = new ArrayList<>(); //모듈
+    private List<Component> components = new ArrayList<>(); //컴포넌트
 
     @OneToMany(mappedBy = "requirementSpec")
     private List<Program> programs = new ArrayList<>(); //프로그램

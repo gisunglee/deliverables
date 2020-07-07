@@ -9,14 +9,11 @@ import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.entity.PropslRequest;
 import silverit.deliverables.common.entity.RequirementSpec;
 import silverit.deliverables.common.form.ProjectForm;
-import silverit.deliverables.common.form.PropslRequestForm;
 import silverit.deliverables.common.form.RequirementSpecForm;
-import silverit.deliverables.project.repository.ProjectRepository;
-import silverit.deliverables.project.repository.PropslRequestRepository;
-import silverit.deliverables.project.repository.RequirementSpecRepository;
+import silverit.deliverables.repository.PropslRequestRepository;
+import silverit.deliverables.repository.RequirementSpecRepository;
 import silverit.deliverables.service.RequirementSpecService;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 

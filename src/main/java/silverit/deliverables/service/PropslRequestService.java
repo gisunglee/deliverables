@@ -7,11 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.entity.PropslRequest;
 import silverit.deliverables.common.form.PropslRequestForm;
-import silverit.deliverables.project.repository.ProjectRepository;
-import silverit.deliverables.project.repository.PropslRequestRepository;
-
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import silverit.deliverables.repository.ProjectRepository;
+import silverit.deliverables.repository.PropslRequestRepository;
 
 @Service
 @Transactional(readOnly = true)

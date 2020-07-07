@@ -7,13 +7,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.form.ProjectForm;
-import silverit.deliverables.project.repository.ProjectRepository;
+import silverit.deliverables.repository.ProjectRepository;
 import silverit.deliverables.service.ProjectService;
-import sun.rmi.runtime.Log;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Controller
 @RequiredArgsConstructor

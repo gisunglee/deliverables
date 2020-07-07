@@ -2,12 +2,7 @@ package silverit.deliverables.common.form;
 
 import lombok.Getter;
 import lombok.Setter;
-import silverit.deliverables.common.entity.Module;
-import silverit.deliverables.common.entity.*;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 @Setter
 @Getter
 /**
@@ -35,6 +30,6 @@ public class RequirementSpecForm {
     private String apvlDtt; //승인 일시
     private String noteCn;//노트 내용
 
-    private String modulNo;
+    private String componentNo;
 
 }

@@ -20,8 +20,8 @@ public class Program {
     private String pgmDc; //프로그램 설명
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MODUL_NO")
-    private Module module; //모듈
+    @JoinColumn(name = "COMPONENT_NO")
+    private Component component; //컴포넌트
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "REQUIREMENT_NO")
@@ -33,13 +33,13 @@ public class Program {
     @OneToMany(mappedBy = "program")
     private List<Source> sources = new ArrayList<>(); //소스
 
-    //연관 관계 편의 메서드 (프로그램 <-> 모듈)
-    public void changeModule(Module module){
-        if (this.module != null) {
-            this.module.getPrograms().remove(this);
+    //연관 관계 편의 메서드 (프로그램 <-> 컴포넌트)
+    public void changeComponent(Component component){
+        if (this.component != null) {
+            this.component.getPrograms().remove(this);
         }
-        this.module = module;
-        module.getPrograms().add(this);
+        this.component = component;
+        component.getPrograms().add(this);
     }
 
     //연관 관계 편의 메서드 (프로그램 <-> 요구사항명세)

@@ -13,7 +13,7 @@ public class ActivityOutput {
     @Id @GeneratedValue
     private Long activityOutputNo; //활동 산출물 번호
     private String mandaSeCd; //필수 구분 코드
-    private String modulByWritYn; //모듈 작성 여부
+    private String conponentByWritYn; //컴포넌트 작성 여부
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ACTIVITY_NO")

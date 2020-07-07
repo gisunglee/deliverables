@@ -1,18 +1,15 @@
 package silverit.deliverables.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import silverit.deliverables.common.entity.Project;
-import silverit.deliverables.common.form.ProjectForm;
-import silverit.deliverables.project.repository.ProjectRepository;
+import silverit.deliverables.repository.ProjectRepository;
 import silverit.deliverables.service.ProjectService;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor

@@ -9,9 +9,9 @@ import silverit.deliverables.common.entity.PropslRequest;
 import silverit.deliverables.common.entity.PropslRequirementMppg;
 import silverit.deliverables.common.entity.RequirementSpec;
 import silverit.deliverables.common.form.RequirementSpecForm;
-import silverit.deliverables.project.repository.PropslRequestRepository;
-import silverit.deliverables.project.repository.PropslRequirementMppgRepository;
-import silverit.deliverables.project.repository.RequirementSpecRepository;
+import silverit.deliverables.repository.PropslRequestRepository;
+import silverit.deliverables.repository.PropslRequirementMppgRepository;
+import silverit.deliverables.repository.RequirementSpecRepository;
 
 import java.util.List;
 

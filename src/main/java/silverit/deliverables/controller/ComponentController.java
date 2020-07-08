@@ -6,8 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import silverit.deliverables.common.entity.Component;
+import silverit.deliverables.common.entity.Project;
 import silverit.deliverables.common.form.ComponentForm;
 import silverit.deliverables.repository.ComponentRepository;
+import silverit.deliverables.repository.ProjectRepository;
 import silverit.deliverables.service.ComponentService;
 
 import java.util.List;
@@ -20,6 +22,8 @@ public class ComponentController {
     final ComponentRepository componentRepository;
     final ComponentService componentService;
 
+    final ProjectRepository projectRepository;
+
     /**
      * 컴포넌트 목록
      * @param model
@@ -28,23 +32,15 @@ public class ComponentController {
     @RequestMapping("/component/list")
     public String list(Model model){
 
-        List<Component> projectList = componentRepository.findAll();
+        //프로젝트 목록 조회
+        List<Project> projectList = projectRepository.findAll();
+        model.addAttribute("projectList", projectList);
 
-        model.addAttribute("componentList", projectList);
+        //컴포넌트 목록 조회
+        List<Component> componentList = componentRepository.findAll();
+        model.addAttribute("componentList", componentList);
 
         return "biz/component/list";
-    }
-
-    /**
-     * 컴포넌트 등록 화면 이동
-     * @param componentForm
-     * @param model
-     * @return
-     */
-    @RequestMapping("/component/goAdd")
-    public String add(ComponentForm componentForm, Model model){
-
-        return "biz/component/add";
     }
 
     /**
@@ -52,7 +48,7 @@ public class ComponentController {
      * @param componentForm
      * @return
      */
-    @PostMapping("/component/add")
+    @PostMapping("/component/save")
     public @ResponseBody ComponentForm save(@ModelAttribute("componentForm") ComponentForm componentForm){
 
         Component component = componentService.save(componentForm);

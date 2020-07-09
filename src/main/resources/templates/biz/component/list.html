@@ -34,20 +34,86 @@
             });
 
 $( "input" ).keyup(function(event) {
-    var id = $(this).attr("id");
-    var arrId = id.split(',');
-    var h = arrId[1];
-    var w = arrId[2];
 
+    var id = $(this).attr("id"); //현재 포커스 input
+    var arrId = id.split('-');
+    var prefix = arrId[0];
+    var h = parseInt(arrId[1]); //세로 index
+    var w = parseInt(arrId[2]); //가로 index
 
-    if( event.which === 13 && event.ctrlKey ) {
-        alert('you pressed ctrlKey+Enter');
+    if(event.ctrlKey && (event.which === 37 || event.which === 38 || event.which === 39 || event.which === 40)  ) { //왼쪽
+        if( event.which === 37) { //왼쪽
+            w -= 1;
+        } else if( event.which === 39) { //오른족
+            w += 1;
+        } else if( event.which === 38) { //위
+            h -= 1;
+        } else if( event.which === 40) { //아래
+            h += 1;
+        }
+        var newId = prefix + "-" + h + "-" + w ;
+        $("#"+newId).focus();
     }
 
 });
 
+             $( "input" ).bind("paste", function (e) {
+
+    var id = $(this).attr("id"); //현재 포커스 input
+    var arrId = id.split('-');
+    var prefix = arrId[0];
+    var h = parseInt(arrId[1]); //세로 index
+    var w = parseInt(arrId[2]); //가로 index
+
+    console.log( "id : " + id);
+
+        e.stopPropagation();
+        e.preventDefault();
+                var pastedData = e.originalEvent.clipboardData.getData('text');
+
+                var rows = pastedData.split("\n");
+
+                console.log(rows);
+
+                for(var y in rows) {
+                    var cells = rows[y].split("\t");
+
+                    var ii = 0
+                    for(var x in cells) {
+                        var newId = prefix + "-" + h + "-" + (w + (ii++)) ;
+                        $("#"+newId).val(cells[x]);
+                    }
+
+                    h += 1;
+                }
+
+            });
+
 
         });
+
+/*
+//http://jsfiddle.net/duwood/sTX7y/
+    function handlePaste (e) {
+        var clipboardData, pastedData;
+
+        // Stop data actually being pasted into div
+        e.stopPropagation();
+        e.preventDefault();
+
+        // Get pasted data via clipboard API
+        clipboardData = e.clipboardData || window.clipboardData;
+        console.log(clipboardData);
+        pastedData = clipboardData.getData('Text');
+
+        // Do whatever with pasteddata
+        alert(pastedData);
+    }
+*/
+
+//document.getElementById('id-1-1').addEventListener('paste', handlePaste);
+
+
 
     </script>
 
@@ -57,6 +123,10 @@ $( "input" ).keyup(function(event) {
     <style>
         .border-no {
            border: 0px;
+        }
+        .form-control {
+            padding : 1px 1px;
+            height: 25px;
         }
     </style>
 </th:block>
@@ -119,17 +189,14 @@ $( "input" ).keyup(function(event) {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="i: ${#numbers.sequence(1,15)}" style="height:13px;">
-                                            <td style="padding: 3px 3px;" class="text-center" th:text="${i+1}"></td>
+                                        <tr th:each="i: ${#numbers.sequence(1, 30)}" >
+                                            <td style="padding: 3px 3px;" class="text-center" th:text="${i}"></td>
                                             <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-1'}"></td>
                                             <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-2'}"></td>
                                             <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-3'}"></td>
                                             <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-4'}"></td>
                                             <td style="padding: 3px 3px;">
-                                                <button class="btn btn-default btn-icon" name="btnPropslRequestList"><span class="icon-list"></span></button>
-                                                <button class="btn btn-default btn-icon"><span class="icon-users"></span></button>
-                                                <button class="btn btn-default btn-icon"><span class="icon-chart-bars"></span></button>
-                                                <button class="btn btn-default btn-icon"><span class="icon-clock"></span></button>
+
                                             </td>
                                         </tr>
                                         </tbody>

@@ -33,47 +33,49 @@
                 location.reload();
             });
 
-$( "input" ).keyup(function(event) {
+            $( "input" ).keyup(function(event) {
 
-    var id = $(this).attr("id"); //현재 포커스 input
-    var arrId = id.split('-');
-    var prefix = arrId[0];
-    var h = parseInt(arrId[1]); //세로 index
-    var w = parseInt(arrId[2]); //가로 index
+                var id = $(this).attr("id"); //현재 포커스 input
+                var arrId = id.split('-');
+                var prefix = arrId[0];
+                var h = parseInt(arrId[1]); //세로 index
+                var w = parseInt(arrId[2]); //가로 index
 
-    if(event.ctrlKey && (event.which === 37 || event.which === 38 || event.which === 39 || event.which === 40)  ) { //왼쪽
-        if( event.which === 37) { //왼쪽
-            w -= 1;
-        } else if( event.which === 39) { //오른족
-            w += 1;
-        } else if( event.which === 38) { //위
-            h -= 1;
-        } else if( event.which === 40) { //아래
-            h += 1;
-        }
-        var newId = prefix + "-" + h + "-" + w ;
-        $("#"+newId).focus();
-    }
-
-});
+                if(event.ctrlKey && (event.which === 37 || event.which === 38 || event.which === 39 || event.which === 40)  ) { //왼쪽
+                    if( event.which === 37) { //왼쪽
+                        w -= 1;
+                    } else if( event.which === 39) { //오른족
+                        w += 1;
+                    } else if( event.which === 38) { //위
+                        h -= 1;
+                    } else if( event.which === 40) { //아래
+                        h += 1;
+                    }
+                    var newId = prefix + "-" + h + "-" + w ;
+                    $("#"+newId).focus();
+                }
+            }); // end  - $( "input" ).keyup(function(event) {
 
              $( "input" ).bind("paste", function (e) {
 
-    var id = $(this).attr("id"); //현재 포커스 input
-    var arrId = id.split('-');
-    var prefix = arrId[0];
-    var h = parseInt(arrId[1]); //세로 index
-    var w = parseInt(arrId[2]); //가로 index
+                var id = $(this).attr("id"); //현재 포커스 input
+                var arrId = id.split('-');
+                var prefix = arrId[0];
+                var h = parseInt(arrId[1]); //세로 index
+                var w = parseInt(arrId[2]); //가로 index
 
-    console.log( "id : " + id);
+                _LOG.debug( "id : " + id);
 
-        e.stopPropagation();
-        e.preventDefault();
+                // Ctrl + C 원래 기능때문에 현재 포커스에 전체 정보가 붙쳐넣기 됨 (이걸 스탑스킴, 이벤트 확산 중지)
+                e.stopPropagation();
+                e.preventDefault();
+
+                // Ctrl + C 한 클립보드 정보
                 var pastedData = e.originalEvent.clipboardData.getData('text');
 
                 var rows = pastedData.split("\n");
 
-                console.log(rows);
+                _LOG.debug(rows);
 
                 for(var y in rows) {
                     var cells = rows[y].split("\t");
@@ -87,10 +89,8 @@ $( "input" ).keyup(function(event) {
                     h += 1;
                 }
 
-            });
-
-
-        });
+            }); // end - $( "input" ).bind("paste", function (e) {
+        }); // end - $(document).ready(function(){
 
 /*
 //http://jsfiddle.net/duwood/sTX7y/

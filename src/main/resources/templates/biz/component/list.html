@@ -33,7 +33,7 @@
                 location.reload();
             });
 
-            $( "input" ).keyup(function(event) {
+            $( "input [type=text]" ).keyup(function(event) {
 
                 var id = $(this).attr("id"); //현재 포커스 input
                 var arrId = id.split('-');
@@ -56,7 +56,7 @@
                 }
             }); // end  - $( "input" ).keyup(function(event) {
 
-             $( "input" ).bind("paste", function (e) {
+             $( "input [type=text]" ).bind("paste", function (e) {
 
                 var id = $(this).attr("id"); //현재 포커스 input
                 var arrId = id.split('-');
@@ -193,14 +193,24 @@
                                         </thead>
                                         <tbody>
                                         <tr th:each="i: ${#numbers.sequence(1, 30)}" >
-                                            <td style="padding: 3px 3px;" class="text-center" th:text="${i}"></td>
-                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-1'}"></td>
-                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-2'}"></td>
-                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-3'}"></td>
-                                            <td style="padding: 3px 3px;"><input type="text" class="form-control border-no" th:id="${'id-' + i + '-4'}"></td>
-                                            <td style="padding: 3px 3px;">
+                                            <input text="hidden" name="isChgYnId" th:id="${'isChgYnId-' + i}" th:value="false"/>
 
-                                            </td>
+                                            <input type="text" name="oriText1" th:id="${'oriTextId-' + i + '-1'}">
+                                            <input type="text" name="oriText2" th:id="${'oriTextId-' + i + '-2'}">
+                                            <input type="text" name="oriText3" th:id="${'oriTextId-' + i + '-3'}">
+                                            <input type="text" name="oriText4" th:id="${'oriTextId-' + i + '-4'}">
+
+                                            <input type="text" name="componentNo1" th:id="${'componentNoId-' + i + '-1'}">
+                                            <input type="text" name="componentNo2" th:id="${'componentNoId-' + i + '-2'}">
+                                            <input type="text" name="componentNo3" th:id="${'componentNoId-' + i + '-3'}">
+                                            <input type="text" name="componentNo4" th:id="${'componentNoId-' + i + '-4'}">
+
+                                            <td style="padding: 3px 3px;" class="text-center" th:text="${i}"></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo1" th:id="${'id-' + i + '-1'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo2" th:id="${'id-' + i + '-2'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo3" th:id="${'id-' + i + '-3'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo4" th:id="${'id-' + i + '-4'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"></td>
                                         </tr>
                                         </tbody>
                                     </table>

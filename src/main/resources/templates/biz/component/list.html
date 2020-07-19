@@ -192,24 +192,26 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <tr th:each="i: ${#numbers.sequence(1, 30)}" >
-                                            <input text="hidden" name="isChgYnId" th:id="${'isChgYnId-' + i}" th:value="false"/>
 
-                                            <input type="text" name="oriText1" th:id="${'oriTextId-' + i + '-1'}">
-                                            <input type="text" name="oriText2" th:id="${'oriTextId-' + i + '-2'}">
-                                            <input type="text" name="oriText3" th:id="${'oriTextId-' + i + '-3'}">
-                                            <input type="text" name="oriText4" th:id="${'oriTextId-' + i + '-4'}">
+                                        <tr th:each="item, i : ${componentList}">
 
-                                            <input type="text" name="componentNo1" th:id="${'componentNoId-' + i + '-1'}">
-                                            <input type="text" name="componentNo2" th:id="${'componentNoId-' + i + '-2'}">
-                                            <input type="text" name="componentNo3" th:id="${'componentNoId-' + i + '-3'}">
-                                            <input type="text" name="componentNo4" th:id="${'componentNoId-' + i + '-4'}">
+                                            <input text="hidden" name="isChgYnId" th:id="${'isChgYnId-' + i.index}" th:value="false"/>
+
+                                            <input type="text" name="oriComponentNm1" th:id="${'oriTextId-' + i.index + '-1'}">
+                                            <input type="text" name="oriComponentNm2" th:id="${'oriTextId-' + i.index + '-2'}">
+                                            <input type="text" name="oriComponentNm3" th:id="${'oriTextId-' + i.index + '-3'}">
+                                            <input type="text" name="oriComponentNm4" th:id="${'oriTextId-' + i.index + '-4'}">
+
+                                            <input type="text" name="componentNo1" th:id="${'componentNoId-' + i.index + '-1'}">
+                                            <input type="text" name="componentNo2" th:id="${'componentNoId-' + i.index + '-2'}">
+                                            <input type="text" name="componentNo3" th:id="${'componentNoId-' + i.index + '-3'}">
+                                            <input type="text" name="componentNo4" th:id="${'componentNoId-' + i.index + '-4'}">
 
                                             <td style="padding: 3px 3px;" class="text-center" th:text="${i}"></td>
-                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo1" th:id="${'id-' + i + '-1'}" class="form-control border-no" ></td>
-                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo2" th:id="${'id-' + i + '-2'}" class="form-control border-no" ></td>
-                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo3" th:id="${'id-' + i + '-3'}" class="form-control border-no" ></td>
-                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo4" th:id="${'id-' + i + '-4'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo1" th:id="${'id-' + i.index + '-1'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo2" th:id="${'id-' + i.index + '-2'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo3" th:id="${'id-' + i.index + '-3'}" class="form-control border-no" ></td>
+                                            <td style="padding: 3px 3px;"><input type="text" name="componentNo4" th:id="${'id-' + i.index + '-4'}" class="form-control border-no" ></td>
                                             <td style="padding: 3px 3px;"></td>
                                         </tr>
                                         </tbody>

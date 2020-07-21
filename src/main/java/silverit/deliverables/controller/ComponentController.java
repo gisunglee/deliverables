@@ -16,6 +16,8 @@ import silverit.deliverables.service.ComponentService;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.util.StringUtils.*;
+
 @Controller
 @RequiredArgsConstructor
 public class ComponentController {
@@ -75,9 +77,13 @@ public class ComponentController {
 
             for(int row = 0; row<componentNm1.length; row++){
 
-//                if(StringUtils. componentNo1[row] != null )
+                //값 존재시
+                if(!isEmpty(trimAllWhitespace(componentNo1[row]))){
+
+                }
 //                String oriVal = oriComponentNm1[row];
 //                String newVal = componentNm1[row];
+
 
 
 

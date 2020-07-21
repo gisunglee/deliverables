@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Table(name = "T_COMPONENT")
 public class Component {
 

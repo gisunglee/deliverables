@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import silverit.deliverables.common.entity.Component;
 import silverit.deliverables.common.entity.Project;
@@ -45,17 +46,53 @@ public class ComponentController {
 
     /**
      * 컴포넌트 등록
-     * @param componentForm
+     * @param
      * @return
      */
     @PostMapping("/component/save")
-    public @ResponseBody ComponentForm save(@ModelAttribute("componentForm") ComponentForm componentForm){
+    public @ResponseBody ComponentForm save(
+             @RequestParam("isChgYnId") String[] isChgYnId
+            , @RequestParam("oriComponentNm1") String[] oriComponentNm1
+            , @RequestParam("oriComponentNm1") String[] oriComponentNm2
+            , @RequestParam("oriComponentNm1") String[] oriComponentNm3
+            , @RequestParam("oriComponentNm1") String[] oriComponentNm4
+            , @RequestParam("componentNo1") String[] componentNo1
+            , @RequestParam("componentNo2") String[] componentNo2
+            , @RequestParam("componentNo3") String[] componentNo3
+            , @RequestParam("componentNo4") String[] componentNo4
+            , @RequestParam("componentNm1") String[] componentNm1
+            , @RequestParam("componentNm2") String[] componentNm2
+            , @RequestParam("componentNm3") String[] componentNm3
+            , @RequestParam("componentNm4") String[] componentNm4
+    ){
 
-        Component component = componentService.save(componentForm);
+        //row 가 존재할때 동작
+        if(isChgYnId != null && isChgYnId.length > 0){
+            //화면에서 1, 2, 3, 4 동일한값이 중복되면 Alert 시켜줘야 할듯
 
-        BeanUtils.copyProperties(component, componentForm);
+            //지금 데이터가 저장상태였는가?
+            //지금 데이터에 변경이 생겼는가? - 값이 변경되었는가?
 
-        return componentForm;
+            for(int row = 0; row<componentNm1.length; row++){
+
+//                if(StringUtils. componentNo1[row] != null )
+//                String oriVal = oriComponentNm1[row];
+//                String newVal = componentNm1[row];
+
+
+
+            }
+
+
+
+        }
+
+
+
+
+//        BeanUtils.copyProperties(component, componentForm);
+
+        return null;
     }
 
     /**

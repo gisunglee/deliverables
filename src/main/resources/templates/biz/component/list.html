@@ -33,6 +33,24 @@
                 location.reload();
             });
 
+            $( "input [type=text]" ).keydown(function(event) {
+
+                if(event.ctrlKey && event.which === 13 ) { //엔터
+                    var id = $(this).attr("id"); //현재 포커스 input
+                    var arrId = id.split('-');
+                    var prefix = arrId[0];
+                    var h = arrId[1]; //세로 index
+                    var w = arrId[2]; //가로 index
+
+                    var componentNoId = $("#componentNoId-" + h + w).val();
+
+                    $('#modal-contact-us').modal('show');
+
+                }
+            }); // end  - $( "input" ).keydown(function(event) {
+
+
+
             $( "input [type=text]" ).keyup(function(event) {
 
                 var id = $(this).attr("id"); //현재 포커스 input
@@ -90,28 +108,23 @@
                 }
 
             }); // end - $( "input" ).bind("paste", function (e) {
+
+
+            var NOTIFYID="";
+            var NONNOTIFYID="";
+            var NCONTENT="";
+
+            $('#modal-contact-us').on('show.bs.modal', function(event) {
+                NOTIFYID = $(event.relatedTarget).data('notifyid');
+                NONNOTIFYID = $(event.relatedTarget).data('nonnotifyid');
+                NCONTENT = $(event.relatedTarget).data('ncontent');
+            });
+
+
+
+
+
         }); // end - $(document).ready(function(){
-
-/*
-//http://jsfiddle.net/duwood/sTX7y/
-    function handlePaste (e) {
-        var clipboardData, pastedData;
-
-        // Stop data actually being pasted into div
-        e.stopPropagation();
-        e.preventDefault();
-
-        // Get pasted data via clipboard API
-        clipboardData = e.clipboardData || window.clipboardData;
-        console.log(clipboardData);
-        pastedData = clipboardData.getData('Text');
-
-        // Do whatever with pasteddata
-        alert(pastedData);
-    }
-*/
-
-//document.getElementById('id-1-1').addEventListener('paste', handlePaste);
 
 
 
@@ -166,7 +179,7 @@
         </div>
 
         <!-- MODAL DEFAULT -->
-        <div class="modal fade" id="modal-contact-us" tabindex="-1" role="dialog" aria-labelledby="modal-contact-us-header">
+        <div class="modal fade" id="modal-contact-us" tabindex="100" role="dialog" aria-labelledby="modal-contact-us-header">
             <div class="modal-dialog" role="document">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" class="icon-cross"></span></button>
 
@@ -273,6 +286,7 @@
         </div>
 
         <div class="form-group">
+            <button class="btn btn-default" type="button" id="">저장</button>
             <button class="btn btn-default" type="button" id="">저장</button>
         </div>
 

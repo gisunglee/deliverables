@@ -15,6 +15,8 @@ import silverit.deliverables.service.ComponentService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
 
 import static org.springframework.util.StringUtils.*;
 
@@ -44,6 +46,44 @@ public class ComponentController {
         model.addAttribute("componentList", componentList);
 
         return "biz/component/list";
+    }
+
+    @RequestMapping("/component/add")
+    public String add(Model model){
+
+        //프로젝트 목록 조회
+        List<Project> projectList = projectRepository.findAll();
+        model.addAttribute("projectList", projectList);
+
+        String rVal = String.valueOf(System.currentTimeMillis()).substring(10, String.valueOf(System.currentTimeMillis()).length());
+
+        //샘플 데이터 생성
+        Component component = new Component();
+        component.setComponentNm("통하징수" + rVal);
+        component.setComponentAbbrNm("LEVY");
+        component.setComponentDc(UUID.randomUUID().toString());
+        component.setProject(projectList.get(0));
+        componentRepository.save(component);
+
+        List<Component> componentList =  componentRepository.findByProject(projectList.get(0));
+        model.addAttribute("componentList", componentList);
+        return "biz/component/add1";
+    }
+
+    @RequestMapping("/component/add1")
+    public String add1(Model model){
+
+        //프로젝트 목록 조회
+        List<Project> projectList = projectRepository.findAll();
+        model.addAttribute("projectList", projectList);
+
+        //컴포넌트 목록 조회
+//        List<Component> componentList = componentRepository.findAll();
+//        model.addAttribute("componentList", componentList);
+
+        List<Component> componentList =  componentRepository.findByProject(projectList.get(0));
+
+        return "biz/component/add1";
     }
 
     /**

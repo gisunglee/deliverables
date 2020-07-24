@@ -41,6 +41,14 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<ProjectMemberMppg> projectMemberMppg = new ArrayList<>(); //프로젝트 팀원 = T_PROJECT_MEMBER_MAPPG
 
+    //메뉴
+    @OneToMany(mappedBy = "project")
+    private List<Menu> menus = new ArrayList<>(); //메뉴 = T_PROJECT
+
+    //컴포넌트
+    @OneToMany(mappedBy = "project")
+    private List<Component> components = new ArrayList<>(); //컴포넌트 = T_COMPONENT
+
     // 단계 연관관계 편의 메서드 (프로젝트 <-> 단계)
     public void changeSteps(Step step){
         this.getSteps().add(step);
@@ -65,5 +73,16 @@ public class Project {
         pojectMemberMppg.setProject(this);
     }
 
+    // 연관관계 편의 메서드 (프로젝트 <-> 메뉴)
+    public void changeMenu(Menu menu){
+        this.getMenus().add(menu);
+        menu.setProject(this);
+    }
+
+    // 연관관계 편의 메서드 (프로젝트 <-> 컴포넌트)
+    public void changeMenu(Component component){
+        this.getComponents().add(component);
+        component.setProject(this);
+    }
 
 }

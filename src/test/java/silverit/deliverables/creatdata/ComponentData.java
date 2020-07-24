@@ -25,10 +25,6 @@ class Component {
 
     public Component createMember(String i){
 
-        Component component = new Component();
-        component.
-
-
-        return member;
+        return null;
     }
 }

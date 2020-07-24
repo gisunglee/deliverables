@@ -25,6 +25,11 @@ public class Component {
     @Setter
     private RequirementSpec requirementSpec;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRJ_NO")
+    @Setter
+    private Project project; //프로젝트 번호
+
     @OneToMany(mappedBy = "component")
     private List<Program> programs = new ArrayList<>(); //프로그램
 
@@ -35,6 +40,15 @@ public class Component {
         }
         this.requirementSpec = requirementSpec;
         requirementSpec.getComponents().add(this);
+    }
+
+    //연관 관계 편의 메서드 (컴포넌트 <-> 프로젝트)
+    public void changeProject(Project project){
+        if(this.project != null){
+            this.project.getComponents().remove(this);
+        }
+        this.project = project;
+        project.getComponents().add(this);
     }
 
     /* ************************************************

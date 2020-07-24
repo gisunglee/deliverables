@@ -24,6 +24,11 @@ public class Menu {
     @Setter
     private RequirementSpec requirementSpec;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRJ_NO")
+    @Setter
+    private Project project; //프로젝트 번호
+
     //연관 관계 편의 메서드 (메뉴 <-> 요구사항명세)
     public void changeRequirementSpec(RequirementSpec requirementSpec){
         if(this.requirementSpec != null){
@@ -31,6 +36,15 @@ public class Menu {
         }
         this.requirementSpec = requirementSpec;
         requirementSpec.getMenus().add(this);
+    }
+
+    //연관 관계 편의 메서드 (메뉴 <-> 프로젝트)
+    public void changeProject(Project project){
+        if(this.project != null){
+            this.project.getMenus().remove(this);
+        }
+        this.project = project;
+        project.getMenus().add(this);
     }
 
     /* ************************************************
